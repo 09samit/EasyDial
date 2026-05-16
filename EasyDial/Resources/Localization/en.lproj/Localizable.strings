@@ -1,0 +1,155 @@
+/* Common */
+"common.loading" = "Loading…";
+"common.done" = "Done";
+"common.cancel" = "Cancel";
+"common.ok" = "OK";
+"common.back" = "Back";
+"common.next" = "Next";
+"common.save" = "Save";
+
+/* Home */
+"home.title" = "Favorites";
+"home.empty.title" = "No favorites yet";
+"home.empty.detail" = "Open settings to add people you call often.";
+"home.empty.action" = "Open settings";
+
+/* Accessibility */
+"a11y.call_hint" = "Double tap to call";
+"a11y.call_contact" = "Call %@";
+"a11y.settings_button" = "Settings";
+"a11y.settings_hint" = "Opens app settings";
+"a11y.dismiss_settings_hint" = "Returns to favorites";
+"a11y.add_contact_hint" = "Adds someone from your contacts";
+"a11y.sos_label" = "Emergency call";
+"a11y.sos_hint" = "Touch and hold for about two seconds to call your emergency number";
+"a11y.setup_progress" = "Setup steps progress";
+"a11y.setup_next_hint" = "Moves to the next setup step";
+"a11y.pick_contact" = "Select %@";
+"a11y.pick_contact_hint" = "Opens details to save this person";
+"a11y.edit_button" = "Edit order";
+"a11y.edit_hint" = "Lets you reorder or delete favorites";
+
+/* Settings */
+"settings.title" = "Settings";
+"settings.section.contacts" = "Contacts";
+"settings.section.favorites" = "Favorite contacts";
+"settings.section.accessibility" = "Accessibility";
+"settings.section.sos" = "Emergency SOS";
+"settings.contacts.add" = "Add someone";
+"settings.reorder.help" = "Tap Edit to reorder favorites. Swipe left to remove.";
+"settings.theme" = "Theme";
+"settings.language" = "Language";
+"settings.text_size" = "Text size";
+"settings.text_size.system" = "Match device";
+"settings.dynamic_type.xSmall" = "Extra Small";
+"settings.dynamic_type.small" = "Small";
+"settings.dynamic_type.medium" = "Medium";
+"settings.dynamic_type.large" = "Large";
+"settings.dynamic_type.xLarge" = "Extra Large";
+"settings.dynamic_type.xxLarge" = "Extra Extra Large";
+"settings.dynamic_type.xxxLarge" = "Extra Extra Extra Large";
+"settings.dynamic_type.ax1" = "Accessibility M";
+"settings.dynamic_type.ax2" = "Accessibility L";
+"settings.dynamic_type.ax3" = "Accessibility XL";
+"settings.dynamic_type.ax4" = "Accessibility XXL";
+"settings.dynamic_type.ax5" = "Accessibility XXXL";
+"settings.voice" = "Voice confirmations";
+"settings.sos.enable" = "Enable SOS button";
+"settings.sos.number" = "Emergency phone number";
+"settings.sos.footer" = "Use your local emergency number or another trusted contact.";
+"settings.reset_setup" = "Reset setup";
+"settings.reset_setup.footer" = "Clears favorites and runs setup again.";
+"settings.reset_setup.confirm_title" = "Reset setup?";
+"settings.reset_setup.confirm_message" = "All favorites will be removed and you will go through setup again.";
+"settings.reset_setup.confirm_action" = "Reset";
+"favorites.title" = "Favorite contacts";
+"favorites.add.disabled_hint" = "Your favorite contacts list is full. Swipe to remove one before adding another.";
+"settings.link.favorites" = "Favorite contacts";
+"a11y.favorites_link_hint" = "Opens the list to add or edit favorite people";
+
+/* Editor */
+"editor.title" = "Edit favorite";
+"editor.name" = "Name";
+"editor.relationship" = "Relationship (e.g., Daughter)";
+"editor.phone" = "Phone number";
+
+/* Add contact */
+"add.title" = "Pick a contact";
+"add.open_contacts" = "Choose from Contacts";
+"add.search" = "Search names";
+"add.confirm" = "Confirm favorite";
+"add.footer" = "Check the phone number before saving.";
+"add.error.max_favorites" = "This device already has the maximum of %lld favorites.";
+"add.error.duplicate" = "This person is already in your favorites.";
+"add.phone_picker" = "Phone number";
+"add.new_contact" = "Create new contact";
+"add.new_contact_hint" = "Opens your phone book to add someone new";
+"add.error.no_phone" = "Add a phone number to this contact, then try again.";
+
+/* Setup */
+"setup.nav_title" = "Setup";
+"setup.permissions.title" = "Allow contacts";
+"setup.permissions.body" = "EasyDial needs Contacts permission so you can pick trusted people to show as large calling buttons.";
+"setup.permissions.cta" = "Allow contacts access";
+"setup.permissions.cta_hint" = "Shows the system permission dialog";
+"setup.permissions.denied" = "Contacts access is required to pick favorite people. Allow access in Settings, then return here.";
+"setup.permissions.open_settings" = "Open Settings";
+"setup.pick.title" = "Choose favorites";
+"setup.pick.body" = "Tap names to include them. You can choose up to %lld for setup.";
+"setup.pick.max_reached" = "You can select at most %lld favorites in setup.";
+"setup.pick.row_hint" = "Toggles this person";
+"setup.relationships.title" = "Names and numbers";
+"setup.relationships.body" = "Add a relationship label and confirm each phone number.";
+"setup.relationships.body_phone_only" = "Confirm each phone number.";
+"setup.photos.title" = "Photos";
+"setup.photos.body" = "Optional: choose a clear face photo for each person.";
+"setup.photos.choose" = "Choose photo";
+"setup.photos.change" = "Change photo";
+"setup.photos.remove" = "Remove photo";
+"setup.photos.preview_a11y" = "Selected photo for %@";
+"setup.photos.a11y_hint" = "Opens your photo library";
+"setup.theme.title" = "Choose a calm theme";
+"setup.language.title" = "Choose language";
+"setup.finish.title" = "Ready to call";
+"setup.finish.body" = "You will see large buttons for:";
+"setup.finish.item" = "• %@";
+"setup.finish.primary" = "Finish setup";
+
+/* Themes (LocalizedStringKey) */
+"theme.light" = "Light";
+"theme.dark" = "Dark";
+"theme.highContrast" = "High contrast";
+
+/* Contact card */
+"contact.call" = "Call";
+"contact.no_name" = "No name";
+
+/* Relationships */
+"relationship.family" = "Family";
+"relationship.daughter" = "Daughter";
+"relationship.doctor" = "Doctor";
+
+/* Speech */
+"speech.calling" = "Calling %@";
+"speech.emergency_mode" = "Emergency mode activated";
+
+/* SOS */
+"sos.title" = "SOS";
+"sos.instructions" = "Touch and hold this button for about two seconds to call your emergency number.";
+
+/* Errors */
+"error.title" = "Something went wrong";
+"error.invalid_phone" = "That phone number does not look valid.";
+"error.cannot_place_call" = "Unable to place a call right now.";
+"error.contacts_load" = "Unable to read contacts. Check permission in Settings.";
+"error.save_failed" = "Unable to save. Please try again.";
+
+/* Validation */
+"validation.name_required" = "Please enter a name.";
+"validation.phone_required" = "Please enter a phone number.";
+"validation.emergency_phone_required" = "Enter a valid emergency number, or turn off SOS.";
+"validation.emergency_phone_invalid" = "That emergency number does not look valid.";
+
+"recovery.title" = "Unable to open saved data";
+"recovery.body" = "EasyDial could not load your contacts and settings. You can reset local data and start setup again.";
+"recovery.reset" = "Reset local data";

@@ -1,0 +1,141 @@
+/* Arabic — EasyDial UI */
+"common.loading" = "جاري التحميل…";
+"common.done" = "تم";
+"common.cancel" = "إلغاء";
+"common.ok" = "حسناً";
+"common.back" = "رجوع";
+"common.next" = "التالي";
+"common.save" = "حفظ";
+
+"home.title" = "المفضلة";
+"home.empty.title" = "لا توجد جهات مفضلة بعد";
+"home.empty.detail" = "افتح الإعدادات لإضافة الأشخاص الذين تتصل بهم غالباً.";
+"home.empty.action" = "فتح الإعدادات";
+
+"a11y.call_hint" = "اضغط مرتين للاتصال";
+"a11y.call_contact" = "اتصال %@";
+"a11y.settings_button" = "الإعدادات";
+"a11y.settings_hint" = "يفتح إعدادات التطبيق";
+"a11y.dismiss_settings_hint" = "العودة إلى المفضلة";
+"a11y.add_contact_hint" = "يضيف شخصاً من جهات الاتصال";
+"a11y.sos_label" = "اتصال طارئ";
+"a11y.sos_hint" = "المس مع الاستمرار نحو ثانيتين للاتصال برقم الطوارئ";
+"a11y.setup_progress" = "تقدم خطوات الإعداد";
+"a11y.setup_next_hint" = "ينتقل إلى الخطوة التالية";
+"a11y.pick_contact" = "اختر %@";
+"a11y.pick_contact_hint" = "يفتح التفاصيل لحفظ هذا الشخص";
+"a11y.edit_button" = "تعديل الترتيب";
+"a11y.edit_hint" = "لإعادة ترتيب أو حذف المفضلة";
+
+"settings.title" = "الإعدادات";
+"settings.section.contacts" = "جهات الاتصال";
+"settings.section.favorites" = "جهات الاتصال المفضلة";
+"settings.section.accessibility" = "إمكانية الوصول";
+"settings.section.sos" = "طوارئ SOS";
+"settings.contacts.add" = "إضافة شخص";
+"settings.reorder.help" = "اضغط «تعديل» لإعادة الترتيب. اسحب لليسار للحذف.";
+"settings.theme" = "المظهر";
+"settings.language" = "اللغة";
+"settings.text_size" = "حجم النص";
+"settings.text_size.system" = "مثل الجهاز";
+"settings.dynamic_type.xSmall" = "صغير جداً";
+"settings.dynamic_type.small" = "صغير";
+"settings.dynamic_type.medium" = "متوسط";
+"settings.dynamic_type.large" = "كبير";
+"settings.dynamic_type.xLarge" = "كبير جداً";
+"settings.dynamic_type.xxLarge" = "كبير جداً جداً";
+"settings.dynamic_type.xxxLarge" = "كبير جداً جداً جداً";
+"settings.dynamic_type.ax1" = "إمكانية وصول M";
+"settings.dynamic_type.ax2" = "إمكانية وصول L";
+"settings.dynamic_type.ax3" = "إمكانية وصول XL";
+"settings.dynamic_type.ax4" = "إمكانية وصول XXL";
+"settings.dynamic_type.ax5" = "إمكانية وصول XXXL";
+"settings.voice" = "تأكيدات صوتية";
+"settings.sos.enable" = "تفعيل زر SOS";
+"settings.sos.number" = "رقم الطوارئ";
+"settings.sos.footer" = "استخدم رقم الطوارئ المحلي أو رقم جهة اتصال موثوقة أخرى.";
+"settings.reset_setup" = "إعادة الإعداد";
+"settings.reset_setup.footer" = "يمسح المفضلة ويعيد الإعداد.";
+"settings.reset_setup.confirm_title" = "إعادة الإعداد؟";
+"settings.reset_setup.confirm_message" = "ستُحذف كل المفضلة وستعود إلى الإعداد الأولي.";
+"settings.reset_setup.confirm_action" = "إعادة تعيين";
+"favorites.title" = "جهات الاتصال المفضلة";
+"favorites.add.disabled_hint" = "قائمة جهات الاتصال المفضلة ممتلئة. اسحب لحذف جهة قبل إضافة أخرى.";
+"settings.link.favorites" = "جهات الاتصال المفضلة";
+"a11y.favorites_link_hint" = "يفتح القائمة لإضافة أو تعديل الأشخاص المفضلين";
+
+"editor.title" = "تعديل المفضل";
+"editor.name" = "الاسم";
+"editor.relationship" = "العلاقة (مثل: ابنة)";
+"editor.phone" = "رقم الهاتف";
+
+"add.title" = "اختر جهة اتصال";
+"add.open_contacts" = "اختيار من جهات الاتصال";
+"add.search" = "بحث في الأسماء";
+"add.confirm" = "تأكيد المفضل";
+"add.footer" = "تحقق من رقم الهاتف قبل الحفظ.";
+"add.error.max_favorites" = "يوجد بالفعل الحد الأقصى وهو %lld مفضلين على هذا الجهاز.";
+"add.error.duplicate" = "هذا الشخص موجود بالفعل في المفضلة.";
+"add.phone_picker" = "رقم الهاتف";
+"add.new_contact" = "إنشاء جهة اتصال جديدة";
+"add.new_contact_hint" = "يفتح دفتر الهاتف لإضافة شخص جديد";
+"add.error.no_phone" = "أضف رقم هاتف لهذا الشخص ثم حاول مرة أخرى.";
+
+"setup.nav_title" = "الإعداد";
+"setup.permissions.title" = "السماح بجهات الاتصال";
+"setup.permissions.body" = "يحتاج EasyDial إلى إذن جهات الاتصال لاختيار الأشخاص الموثوقين كأزرار اتصال كبيرة.";
+"setup.permissions.cta" = "السماح بالوصول لجهات الاتصال";
+"setup.permissions.cta_hint" = "يعرض نافذة النظام للأذونات";
+"setup.permissions.denied" = "مطلوب الوصول إلى جهات الاتصال. اسمح بالوصول من الإعدادات ثم عد هنا.";
+"setup.permissions.open_settings" = "فتح الإعدادات";
+"setup.pick.title" = "اختر المفضلة";
+"setup.pick.body" = "اضغط على الأسماء لتضمينها. يمكنك اختيار ما يصل إلى %lld في الإعداد.";
+"setup.pick.max_reached" = "يمكنك اختيار %lld مفضلين كحد أقصى في الإعداد.";
+"setup.pick.row_hint" = "تبديل هذا الشخص";
+"setup.relationships.title" = "الأسماء والأرقام";
+"setup.relationships.body" = "أضف تسمية علاقة وتأكد من كل رقم هاتف.";
+"setup.relationships.body_phone_only" = "أكد كل رقم هاتف.";
+"setup.photos.title" = "الصور";
+"setup.photos.body" = "اختياري: اختر صورة وجه واضحة لكل شخص.";
+"setup.photos.choose" = "اختر صورة";
+"setup.photos.change" = "تغيير الصورة";
+"setup.photos.remove" = "إزالة الصورة";
+"setup.photos.preview_a11y" = "الصورة المختارة لـ %@";
+"setup.photos.a11y_hint" = "يفتح مكتبة الصور";
+"setup.theme.title" = "اختر مظهراً هادئاً";
+"setup.language.title" = "اختر اللغة";
+"setup.finish.title" = "جاهز للاتصال";
+"setup.finish.body" = "سترى أزراراً كبيرة لـ:";
+"setup.finish.item" = "• %@";
+"setup.finish.primary" = "إنهاء الإعداد";
+
+"theme.light" = "فاتح";
+"theme.dark" = "داكن";
+"theme.highContrast" = "تباين عالٍ";
+
+"contact.call" = "اتصال";
+"contact.no_name" = "بدون اسم";
+
+"relationship.family" = "عائلة";
+"relationship.daughter" = "ابنة";
+"relationship.doctor" = "طبيب";
+
+"speech.calling" = "جاري الاتصال بـ %@";
+"speech.emergency_mode" = "تم تفعيل وضع الطوارئ";
+
+"sos.title" = "SOS";
+"sos.instructions" = "المس هذا الزر مع الاستمرار نحو ثانيتين للاتصال برقم الطوارئ.";
+
+"error.title" = "حدث خطأ";
+"error.invalid_phone" = "رقم الهاتف غير صالح.";
+"error.cannot_place_call" = "تعذّر إجراء المكالمة الآن.";
+"error.contacts_load" = "تعذّر قراءة جهات الاتصال. تحقق من الإذن في الإعدادات.";
+"error.save_failed" = "تعذّر الحفظ. حاول مرة أخرى.";
+
+"validation.name_required" = "يرجى إدخال الاسم.";
+"validation.phone_required" = "يرجى إدخال رقم الهاتف.";
+"validation.emergency_phone_required" = "أدخل رقم طوارئ صالحاً، أو أوقف SOS.";
+"validation.emergency_phone_invalid" = "رقم الطوارئ غير صالح.";
+"recovery.title" = "تعذّر فتح البيانات المحفوظة";
+"recovery.body" = "تعذّر على EasyDial تحميل جهات الاتصال والإعدادات. يمكنك إعادة تعيين البيانات المحلية والبدء من جديد.";
+"recovery.reset" = "إعادة تعيين البيانات المحلية";

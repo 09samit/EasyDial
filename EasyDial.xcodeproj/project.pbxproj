@@ -1,0 +1,528 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		020B508D6F354F0B8765C975 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DFBE61B84E5A4994B9EEE31D /* Localizable.strings */; };
+		0536B789380C40AFBF1728B5 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C02A31CBD34257945CA751 /* RootView.swift */; };
+		09A5BDE409E440D183714430 /* AccessibilityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D779D7CB1F4460B89F3A841 /* AccessibilityService.swift */; };
+		0A7CBCFB92A44D1A93887D71 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DAED56828CA4C8D987AF14F /* SettingsView.swift */; };
+		0BBFBAC869DC4F2EAE915B97 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9437666731D143EAB254B7F8 /* Localizable.strings */; };
+		15211175EAE64B75830CFE59 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC783010167A4921865919DD /* HomeView.swift */; };
+		15F77B1197CA47579F60EC17 /* ContactViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F8A225F51B449E827BBB39 /* ContactViewModel.swift */; };
+		1BA5EF486EAA40C5B0D1E44C /* Contacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D6076F130E3417F92B69917 /* Contacts.framework */; };
+		1DFDF81A7F80401C81A23D02 /* AppLanguage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB06308F723D4268AC340F5B /* AppLanguage.swift */; };
+		211548DD32E94415A5EEAB01 /* AppPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B429D0E92049F5BECB257B /* AppPreferences.swift */; };
+		23BFB92F611F4D1C806A6C28 /* SpeechService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD769E99A5242E8905ACC9A /* SpeechService.swift */; };
+		2B2E6039F21848E593ACF181 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6E57D3D2009542C585DFBFEA /* Localizable.strings */; };
+		2B34808912DB476E90149943 /* ContactCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0539CF6C866F452A894D6CC9 /* ContactCardView.swift */; };
+		344D227CFD904F3FBBFCEF7A /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD9CE2E853D7459A8B56045C /* SettingsViewModel.swift */; };
+		3657B679B57E455696A18CED /* EmergencySettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2558DC96FF2A4EDA8C26CD2F /* EmergencySettings.swift */; };
+		3A0512EC4E3444DC98D83D10 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 99D392F7D42945B9A10CE69D /* Assets.xcassets */; };
+		4437793462F440FCB3D2F0B2 /* CallService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7288C23BFB1407DAEF8B7FC /* CallService.swift */; };
+		45D512C1F15443B597348BA3 /* ThemeColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D0D81D4A8B48E8877C2D15 /* ThemeColors.swift */; };
+		4624674993154EE7BD9457AE /* PreviewSampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343EFB66C27B4314BAD810C3 /* PreviewSampleData.swift */; };
+		507DB60F3DE24B9AABDE3409 /* AppServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC37BC475BBD4885A89377EB /* AppServices.swift */; };
+		5B07A7CFAFE9444FA287374D /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12EB1E9A87D486688CE1DB7 /* ThemeManager.swift */; };
+		600A503C651F4141860212B0 /* EasyDialApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B4551B218649209157AC6E /* EasyDialApp.swift */; };
+		762DD2AB978E4F909DAB68C5 /* SetupFlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 692160540C2A4A6ABA5978FE /* SetupFlowView.swift */; };
+		9F36ED9383444B4B82BA0F75 /* PermissionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6866A50330304A5797C38F7E /* PermissionManager.swift */; };
+		A1B2C3D4E5F60718293A4B5C9 /* ThemedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F60718293A4B5C8 /* ThemedTextField.swift */; };
+		A50AD0F8E4D849689D7E2965 /* ContactService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C877F7B77ED47ADBDDDFF64 /* ContactService.swift */; };
+		A9258FAC65554B6F9F9D8097 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 765E2367B8CA46F0AAF49443 /* AVFoundation.framework */; };
+		A93009BC673E4D9ABC64EAB9 /* EmergencySOSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5824F949839648399662B5D6 /* EmergencySOSView.swift */; };
+		B2C3D4E5F60718293A4B5C6D /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = B2C3D4E5F60718293A4B5C6E /* PrivacyInfo.xcprivacy */; };
+		B5C6D7E8F901234567890A01 /* ModelContextSave.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C6D7E8F901234567890A11 /* ModelContextSave.swift */; };
+		B5C6D7E8F901234567890A02 /* ImageDataOptimizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C6D7E8F901234567890A12 /* ImageDataOptimizer.swift */; };
+		B5C6D7E8F901234567890A03 /* DynamicTypeStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C6D7E8F901234567890A13 /* DynamicTypeStorage.swift */; };
+		B5C6D7E8F901234567890A04 /* ModelContainerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C6D7E8F901234567890A14 /* ModelContainerFactory.swift */; };
+		B5C6D7E8F901234567890A06 /* DataRecoveryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C6D7E8F901234567890A16 /* DataRecoveryView.swift */; };
+		B5C6D7E8F901234567890A07 /* EditFavoriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C6D7E8F901234567890A17 /* EditFavoriteView.swift */; };
+		BA10B25A20C94E51B4C470F5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8D5F5743D2F14796BBD3C25A /* Localizable.strings */; };
+		BE9033D21B2B4F00B92F2860 /* SetupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE263BBBFF1649ED9CB45FBF /* SetupViewModel.swift */; };
+		C0FFEE01000040008000ABCD3 /* AppConfiguration.plist in Resources */ = {isa = PBXBuildFile; fileRef = C0FFEE01000040008000ABCD1 /* AppConfiguration.plist */; };
+		C0FFEE01000040008000ABCD4 /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FFEE01000040008000ABCD2 /* AppConfiguration.swift */; };
+		C28108951CD146FC9029FB56 /* HapticService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706A65157D9A4A849CD9DB42 /* HapticService.swift */; };
+		C7D8E9F0A1B2C3D4E5F60719 /* NewContactComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D8E9F0A1B2C3D4E5F60718 /* NewContactComposer.swift */; };
+		C8D9E0F1A2B3C4D5E6F70819 /* ContactPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D9E0F1A2B3C4D5E6F70818 /* ContactPicker.swift */; };
+		CB102A35FD7545ED92F93D5B /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80421B31BDB741D8B0CA431E /* AppTheme.swift */; };
+		D854824DE0B84D61B3BB67C7 /* AddContactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350F29FB0B594A4D9D2A785B /* AddContactView.swift */; };
+		D9E0F1A2B3C4D5E6F7081920 /* FavoriteImportValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E0F1A2B3C4D5E6F7081910 /* FavoriteImportValidator.swift */; };
+		D9E0F1A2B3C4D5E6F7081921 /* FavoriteContactImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E0F1A2B3C4D5E6F7081911 /* FavoriteContactImporter.swift */; };
+		E1D2C3B4A5968778695A4B3C2D1E0F02 /* FavoriteContactsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D2C3B4A5968778695A4B3C2D1E0F01 /* FavoriteContactsView.swift */; };
+		F1E2D3C4B5A69786958473625140393 /* L10n.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E2D3C4B5A69786958473625140392 /* L10n.swift */; };
+		F22B4C44E2154CC48AD67F9E /* FavoriteContact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E3C9DC19344136990397AF /* FavoriteContact.swift */; };
+		F23EAE12644749EBB4900F55 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1894DB153944FD9AC1B48F /* HomeViewModel.swift */; };
+		F7A8E9D0C1B2A39485746353 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7A8E9D0C1B2A39485746352 /* LaunchScreen.storyboard */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		0539CF6C866F452A894D6CC9 /* ContactCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCardView.swift; sourceTree = "<group>"; };
+		06B429D0E92049F5BECB257B /* AppPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPreferences.swift; sourceTree = "<group>"; };
+		0D779D7CB1F4460B89F3A841 /* AccessibilityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibilityService.swift; sourceTree = "<group>"; };
+		13D0D81D4A8B48E8877C2D15 /* ThemeColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeColors.swift; sourceTree = "<group>"; };
+		2558DC96FF2A4EDA8C26CD2F /* EmergencySettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmergencySettings.swift; sourceTree = "<group>"; };
+		2C877F7B77ED47ADBDDDFF64 /* ContactService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactService.swift; sourceTree = "<group>"; };
+		2D6076F130E3417F92B69917 /* Contacts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Contacts.framework; path = System/Library/Frameworks/Contacts.framework; sourceTree = SDKROOT; };
+		2DAED56828CA4C8D987AF14F /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		343EFB66C27B4314BAD810C3 /* PreviewSampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewSampleData.swift; sourceTree = "<group>"; };
+		350F29FB0B594A4D9D2A785B /* AddContactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactView.swift; sourceTree = "<group>"; };
+		3BD769E99A5242E8905ACC9A /* SpeechService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechService.swift; sourceTree = "<group>"; };
+		5824F949839648399662B5D6 /* EmergencySOSView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmergencySOSView.swift; sourceTree = "<group>"; };
+		64B4551B218649209157AC6E /* EasyDialApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EasyDialApp.swift; sourceTree = "<group>"; };
+		6866A50330304A5797C38F7E /* PermissionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionManager.swift; sourceTree = "<group>"; };
+		692160540C2A4A6ABA5978FE /* SetupFlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupFlowView.swift; sourceTree = "<group>"; };
+		6E57D3D2009542C585DFBFEA /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		706A65157D9A4A849CD9DB42 /* HapticService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticService.swift; sourceTree = "<group>"; };
+		765E2367B8CA46F0AAF49443 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		80421B31BDB741D8B0CA431E /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
+		8D5F5743D2F14796BBD3C25A /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = hi.lproj/Localizable.strings; sourceTree = "<group>"; };
+		9437666731D143EAB254B7F8 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
+		94E3C9DC19344136990397AF /* FavoriteContact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteContact.swift; sourceTree = "<group>"; };
+		99D392F7D42945B9A10CE69D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A1B2C3D4E5F60718293A4B5C8 /* ThemedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemedTextField.swift; sourceTree = "<group>"; };
+		A5C02A31CBD34257945CA751 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		A5D1E9B1279C46CE9F48657E /* EasyDial.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EasyDial.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB06308F723D4268AC340F5B /* AppLanguage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLanguage.swift; sourceTree = "<group>"; };
+		AE263BBBFF1649ED9CB45FBF /* SetupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupViewModel.swift; sourceTree = "<group>"; };
+		B2C3D4E5F60718293A4B5C6E /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		B5C6D7E8F901234567890A11 /* ModelContextSave.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelContextSave.swift; sourceTree = "<group>"; };
+		B5C6D7E8F901234567890A12 /* ImageDataOptimizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDataOptimizer.swift; sourceTree = "<group>"; };
+		B5C6D7E8F901234567890A13 /* DynamicTypeStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicTypeStorage.swift; sourceTree = "<group>"; };
+		B5C6D7E8F901234567890A14 /* ModelContainerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelContainerFactory.swift; sourceTree = "<group>"; };
+		B5C6D7E8F901234567890A16 /* DataRecoveryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataRecoveryView.swift; sourceTree = "<group>"; };
+		B5C6D7E8F901234567890A17 /* EditFavoriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditFavoriteView.swift; sourceTree = "<group>"; };
+		C0FFEE01000040008000ABCD1 /* AppConfiguration.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = AppConfiguration.plist; sourceTree = "<group>"; };
+		C0FFEE01000040008000ABCD2 /* AppConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
+		C12EB1E9A87D486688CE1DB7 /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
+		C4F8A225F51B449E827BBB39 /* ContactViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactViewModel.swift; sourceTree = "<group>"; };
+		C7D8E9F0A1B2C3D4E5F60718 /* NewContactComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewContactComposer.swift; sourceTree = "<group>"; };
+		C8D9E0F1A2B3C4D5E6F70818 /* ContactPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactPicker.swift; sourceTree = "<group>"; };
+		D36E75B8A0D74EFB877F2662 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D9E0F1A2B3C4D5E6F7081910 /* FavoriteImportValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteImportValidator.swift; sourceTree = "<group>"; };
+		D9E0F1A2B3C4D5E6F7081911 /* FavoriteContactImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteContactImporter.swift; sourceTree = "<group>"; };
+		DD9CE2E853D7459A8B56045C /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		DFBE61B84E5A4994B9EEE31D /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		E1D2C3B4A5968778695A4B3C2D1E0F01 /* FavoriteContactsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteContactsView.swift; sourceTree = "<group>"; };
+		EC37BC475BBD4885A89377EB /* AppServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppServices.swift; sourceTree = "<group>"; };
+		EE1894DB153944FD9AC1B48F /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		F1E2D3C4B5A69786958473625140392 /* L10n.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = L10n.swift; sourceTree = "<group>"; };
+		F7288C23BFB1407DAEF8B7FC /* CallService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallService.swift; sourceTree = "<group>"; };
+		F7A8E9D0C1B2A39485746352 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		FC783010167A4921865919DD /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		23F802AD97924DE4B8FB2A15 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1BA5EF486EAA40C5B0D1E44C /* Contacts.framework in Frameworks */,
+				A9258FAC65554B6F9F9D8097 /* AVFoundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		01F8D11DFCE140BBB5AE2FF1 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				0D779D7CB1F4460B89F3A841 /* AccessibilityService.swift */,
+				EC37BC475BBD4885A89377EB /* AppServices.swift */,
+				F7288C23BFB1407DAEF8B7FC /* CallService.swift */,
+				2C877F7B77ED47ADBDDDFF64 /* ContactService.swift */,
+				706A65157D9A4A849CD9DB42 /* HapticService.swift */,
+				3BD769E99A5242E8905ACC9A /* SpeechService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		02C1AA6775A74EE8890C49AF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A5D1E9B1279C46CE9F48657E /* EasyDial.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1DB556BFBA2A4351ACD6B1C9 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				AB06308F723D4268AC340F5B /* AppLanguage.swift */,
+				06B429D0E92049F5BECB257B /* AppPreferences.swift */,
+				80421B31BDB741D8B0CA431E /* AppTheme.swift */,
+				2558DC96FF2A4EDA8C26CD2F /* EmergencySettings.swift */,
+				94E3C9DC19344136990397AF /* FavoriteContact.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		28EE98612FB4FEBE00973358 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				2D6076F130E3417F92B69917 /* Contacts.framework */,
+				765E2367B8CA46F0AAF49443 /* AVFoundation.framework */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		2BC541C659B24EB98D528F5E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				350F29FB0B594A4D9D2A785B /* AddContactView.swift */,
+				C8D9E0F1A2B3C4D5E6F70818 /* ContactPicker.swift */,
+				C7D8E9F0A1B2C3D4E5F60718 /* NewContactComposer.swift */,
+				0539CF6C866F452A894D6CC9 /* ContactCardView.swift */,
+				B5C6D7E8F901234567890A16 /* DataRecoveryView.swift */,
+				B5C6D7E8F901234567890A17 /* EditFavoriteView.swift */,
+				E1D2C3B4A5968778695A4B3C2D1E0F01 /* FavoriteContactsView.swift */,
+				5824F949839648399662B5D6 /* EmergencySOSView.swift */,
+				FC783010167A4921865919DD /* HomeView.swift */,
+				2DAED56828CA4C8D987AF14F /* SettingsView.swift */,
+				692160540C2A4A6ABA5978FE /* SetupFlowView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		339F7F8A1497433F93C25E81 /* Resources/Localization */ = {
+			isa = PBXGroup;
+			children = (
+				DFBE61B84E5A4994B9EEE31D /* Localizable.strings */,
+				8D5F5743D2F14796BBD3C25A /* Localizable.strings */,
+				9437666731D143EAB254B7F8 /* Localizable.strings */,
+				6E57D3D2009542C585DFBFEA /* Localizable.strings */,
+			);
+			path = Resources/Localization;
+			sourceTree = "<group>";
+		};
+		7C5EFD61A7444FE2B8FA91C0 = {
+			isa = PBXGroup;
+			children = (
+				EAEFAFD8AED2465794358B17 /* EasyDial */,
+				02C1AA6775A74EE8890C49AF /* Products */,
+				28EE98612FB4FEBE00973358 /* Recovered References */,
+			);
+			sourceTree = "<group>";
+		};
+		885090213D0D46BB9D519BF0 /* PreviewSupport */ = {
+			isa = PBXGroup;
+			children = (
+				343EFB66C27B4314BAD810C3 /* PreviewSampleData.swift */,
+			);
+			path = PreviewSupport;
+			sourceTree = "<group>";
+		};
+		992805A6AADA4BC6B504E2AF /* Resources/Theme */ = {
+			isa = PBXGroup;
+			children = (
+				13D0D81D4A8B48E8877C2D15 /* ThemeColors.swift */,
+				A1B2C3D4E5F60718293A4B5C8 /* ThemedTextField.swift */,
+			);
+			path = Resources/Theme;
+			sourceTree = "<group>";
+		};
+		AA30B57C1EBE4530A6DF8909 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				6866A50330304A5797C38F7E /* PermissionManager.swift */,
+				C12EB1E9A87D486688CE1DB7 /* ThemeManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		B8C9D0E1F2A3B4C5D6E7F8090A1B2C3D /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				B5C6D7E8F901234567890A13 /* DynamicTypeStorage.swift */,
+				B5C6D7E8F901234567890A12 /* ImageDataOptimizer.swift */,
+				F1E2D3C4B5A69786958473625140392 /* L10n.swift */,
+				B5C6D7E8F901234567890A11 /* ModelContextSave.swift */,
+				B5C6D7E8F901234567890A14 /* ModelContainerFactory.swift */,
+				D9E0F1A2B3C4D5E6F7081910 /* FavoriteImportValidator.swift */,
+				D9E0F1A2B3C4D5E6F7081911 /* FavoriteContactImporter.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		C0FFEE01000040008000ABCD5 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				C0FFEE01000040008000ABCD2 /* AppConfiguration.swift */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
+		C0FFEE01000040008000ABCD6 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				C0FFEE01000040008000ABCD1 /* AppConfiguration.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		EADA550B0E2743F4ADFF0EE7 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				C4F8A225F51B449E827BBB39 /* ContactViewModel.swift */,
+				EE1894DB153944FD9AC1B48F /* HomeViewModel.swift */,
+				DD9CE2E853D7459A8B56045C /* SettingsViewModel.swift */,
+				AE263BBBFF1649ED9CB45FBF /* SetupViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		EAEFAFD8AED2465794358B17 /* EasyDial */ = {
+			isa = PBXGroup;
+			children = (
+				64B4551B218649209157AC6E /* EasyDialApp.swift */,
+				F7A8E9D0C1B2A39485746352 /* LaunchScreen.storyboard */,
+				A5C02A31CBD34257945CA751 /* RootView.swift */,
+				D36E75B8A0D74EFB877F2662 /* Info.plist */,
+				B2C3D4E5F60718293A4B5C6E /* PrivacyInfo.xcprivacy */,
+				99D392F7D42945B9A10CE69D /* Assets.xcassets */,
+				C0FFEE01000040008000ABCD6 /* Resources */,
+				C0FFEE01000040008000ABCD5 /* Config */,
+				339F7F8A1497433F93C25E81 /* Resources/Localization */,
+				B8C9D0E1F2A3B4C5D6E7F8090A1B2C3D /* Utilities */,
+				AA30B57C1EBE4530A6DF8909 /* Managers */,
+				1DB556BFBA2A4351ACD6B1C9 /* Models */,
+				885090213D0D46BB9D519BF0 /* PreviewSupport */,
+				992805A6AADA4BC6B504E2AF /* Resources/Theme */,
+				01F8D11DFCE140BBB5AE2FF1 /* Services */,
+				EADA550B0E2743F4ADFF0EE7 /* ViewModels */,
+				2BC541C659B24EB98D528F5E /* Views */,
+			);
+			path = EasyDial;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C47ABD575E084C5DAB4031B1 /* EasyDial */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1D755DBD410249A59B1C8151 /* Build configuration list for PBXNativeTarget "EasyDial" */;
+			buildPhases = (
+				B94C8F9E93AD443EABFF8953 /* Sources */,
+				23F802AD97924DE4B8FB2A15 /* Frameworks */,
+				D1E387A3733849A89FAD3B31 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = EasyDial;
+			productName = EasyDial;
+			productReference = A5D1E9B1279C46CE9F48657E /* EasyDial.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4B1B7C17547747D9B44170A7 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
+			};
+			buildConfigurationList = 35AB4FF8E8EA49298F4E12ED /* Build configuration list for PBXProject "EasyDial" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				hi,
+				ar,
+				es,
+				Base,
+			);
+			mainGroup = 7C5EFD61A7444FE2B8FA91C0;
+			productRefGroup = 02C1AA6775A74EE8890C49AF /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C47ABD575E084C5DAB4031B1 /* EasyDial */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D1E387A3733849A89FAD3B31 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3A0512EC4E3444DC98D83D10 /* Assets.xcassets in Resources */,
+				C0FFEE01000040008000ABCD3 /* AppConfiguration.plist in Resources */,
+				F7A8E9D0C1B2A39485746353 /* LaunchScreen.storyboard in Resources */,
+				B2C3D4E5F60718293A4B5C6D /* PrivacyInfo.xcprivacy in Resources */,
+				020B508D6F354F0B8765C975 /* Localizable.strings in Resources */,
+				BA10B25A20C94E51B4C470F5 /* Localizable.strings in Resources */,
+				0BBFBAC869DC4F2EAE915B97 /* Localizable.strings in Resources */,
+				2B2E6039F21848E593ACF181 /* Localizable.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B94C8F9E93AD443EABFF8953 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C0FFEE01000040008000ABCD4 /* AppConfiguration.swift in Sources */,
+				600A503C651F4141860212B0 /* EasyDialApp.swift in Sources */,
+				9F36ED9383444B4B82BA0F75 /* PermissionManager.swift in Sources */,
+				5B07A7CFAFE9444FA287374D /* ThemeManager.swift in Sources */,
+				1DFDF81A7F80401C81A23D02 /* AppLanguage.swift in Sources */,
+				211548DD32E94415A5EEAB01 /* AppPreferences.swift in Sources */,
+				CB102A35FD7545ED92F93D5B /* AppTheme.swift in Sources */,
+				3657B679B57E455696A18CED /* EmergencySettings.swift in Sources */,
+				F22B4C44E2154CC48AD67F9E /* FavoriteContact.swift in Sources */,
+				4624674993154EE7BD9457AE /* PreviewSampleData.swift in Sources */,
+				45D512C1F15443B597348BA3 /* ThemeColors.swift in Sources */,
+				A1B2C3D4E5F60718293A4B5C9 /* ThemedTextField.swift in Sources */,
+				0536B789380C40AFBF1728B5 /* RootView.swift in Sources */,
+				09A5BDE409E440D183714430 /* AccessibilityService.swift in Sources */,
+				507DB60F3DE24B9AABDE3409 /* AppServices.swift in Sources */,
+				4437793462F440FCB3D2F0B2 /* CallService.swift in Sources */,
+				A50AD0F8E4D849689D7E2965 /* ContactService.swift in Sources */,
+				C28108951CD146FC9029FB56 /* HapticService.swift in Sources */,
+				23BFB92F611F4D1C806A6C28 /* SpeechService.swift in Sources */,
+				15F77B1197CA47579F60EC17 /* ContactViewModel.swift in Sources */,
+				F23EAE12644749EBB4900F55 /* HomeViewModel.swift in Sources */,
+				344D227CFD904F3FBBFCEF7A /* SettingsViewModel.swift in Sources */,
+				BE9033D21B2B4F00B92F2860 /* SetupViewModel.swift in Sources */,
+				D854824DE0B84D61B3BB67C7 /* AddContactView.swift in Sources */,
+				C8D9E0F1A2B3C4D5E6F70819 /* ContactPicker.swift in Sources */,
+				2B34808912DB476E90149943 /* ContactCardView.swift in Sources */,
+				A93009BC673E4D9ABC64EAB9 /* EmergencySOSView.swift in Sources */,
+				15211175EAE64B75830CFE59 /* HomeView.swift in Sources */,
+				0A7CBCFB92A44D1A93887D71 /* SettingsView.swift in Sources */,
+				762DD2AB978E4F909DAB68C5 /* SetupFlowView.swift in Sources */,
+				F1E2D3C4B5A69786958473625140393 /* L10n.swift in Sources */,
+				E1D2C3B4A5968778695A4B3C2D1E0F02 /* FavoriteContactsView.swift in Sources */,
+				B5C6D7E8F901234567890A01 /* ModelContextSave.swift in Sources */,
+				B5C6D7E8F901234567890A02 /* ImageDataOptimizer.swift in Sources */,
+				B5C6D7E8F901234567890A03 /* DynamicTypeStorage.swift in Sources */,
+				B5C6D7E8F901234567890A04 /* ModelContainerFactory.swift in Sources */,
+				D9E0F1A2B3C4D5E6F7081920 /* FavoriteImportValidator.swift in Sources */,
+				D9E0F1A2B3C4D5E6F7081921 /* FavoriteContactImporter.swift in Sources */,
+				B5C6D7E8F901234567890A06 /* DataRecoveryView.swift in Sources */,
+				B5C6D7E8F901234567890A07 /* EditFavoriteView.swift in Sources */,
+				C7D8E9F0A1B2C3D4E5F60719 /* NewContactComposer.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		1DDB3D4B1040489A86B1936A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8SS5HN6D42;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = EasyDial/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = CallNest;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hexa.EasyDial;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		35DD340F0A0A4DFCA8224299 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+			};
+			name = Release;
+		};
+		5B55BE5DB3994F549C0D023D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8SS5HN6D42;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = EasyDial/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = CallNest;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hexa.EasyDial;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F7B6BDF3AF9C4852A88A5791 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1D755DBD410249A59B1C8151 /* Build configuration list for PBXNativeTarget "EasyDial" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5B55BE5DB3994F549C0D023D /* Debug */,
+				1DDB3D4B1040489A86B1936A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		35AB4FF8E8EA49298F4E12ED /* Build configuration list for PBXProject "EasyDial" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F7B6BDF3AF9C4852A88A5791 /* Debug */,
+				35DD340F0A0A4DFCA8224299 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 4B1B7C17547747D9B44170A7 /* Project object */;
+}

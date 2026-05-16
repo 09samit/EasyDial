@@ -1,0 +1,141 @@
+/* Hindi — EasyDial UI */
+"common.loading" = "लोड हो रहा है…";
+"common.done" = "हो गया";
+"common.cancel" = "रद्द करें";
+"common.ok" = "ठीक";
+"common.back" = "पीछे";
+"common.next" = "आगे";
+"common.save" = "सेव करें";
+
+"home.title" = "पसंदीदा";
+"home.empty.title" = "अभी कोई पसंदीदा नहीं";
+"home.empty.detail" = "अक्सर जिन्हें आप कॉल करते हैं उन्हें जोड़ने के लिए सेटिंग्स खोलें।";
+"home.empty.action" = "सेटिंग्स खोलें";
+
+"a11y.call_hint" = "कॉल करने के लिए दो बार टैप करें";
+"a11y.call_contact" = "%@ को कॉल करें";
+"a11y.settings_button" = "सेटिंग्स";
+"a11y.settings_hint" = "ऐप सेटिंग्स खोलता है";
+"a11y.dismiss_settings_hint" = "पसंदीदा पर वापस जाता है";
+"a11y.add_contact_hint" = "आपकी संपर्क सूची से किसी को जोड़ता है";
+"a11y.sos_label" = "आपात कॉल";
+"a11y.sos_hint" = "आपात नंबर पर कॉल के लिए लगभग दो सेकंड दबाकर रखें";
+"a11y.setup_progress" = "सेटअप चरणों की प्रगति";
+"a11y.setup_next_hint" = "अगले सेटअप चरण पर जाता है";
+"a11y.pick_contact" = "%@ चुनें";
+"a11y.pick_contact_hint" = "इस व्यक्ति को सेव करने के लिए विवरण खोलता है";
+"a11y.edit_button" = "क्रम संपादित करें";
+"a11y.edit_hint" = "पसंदीदा को फिर से क्रमबद्ध या हटाने देता है";
+"a11y.favorites_link_hint" = "पसंदीदा लोग जोड़ने या बदलने की सूची खोलता है";
+
+"settings.title" = "सेटिंग्स";
+"settings.section.contacts" = "संपर्क";
+"settings.section.favorites" = "पसंदीदा संपर्क";
+"settings.section.accessibility" = "पहुँच";
+"settings.section.sos" = "आपात SOS";
+"settings.contacts.add" = "किसी को जोड़ें";
+"settings.reorder.help" = "क्रम बदलने के लिए संपादित करें पर टैप करें। हटाने के लिए बाएँ स्वाइप करें।";
+"settings.theme" = "थीम";
+"settings.language" = "भाषा";
+"settings.text_size" = "टेक्स्ट का आकार";
+"settings.text_size.system" = "डिवाइस जैसा";
+"settings.dynamic_type.xSmall" = "बहुत छोटा";
+"settings.dynamic_type.small" = "छोटा";
+"settings.dynamic_type.medium" = "मध्यम";
+"settings.dynamic_type.large" = "बड़ा";
+"settings.dynamic_type.xLarge" = "बहुत बड़ा";
+"settings.dynamic_type.xxLarge" = "अति बड़ा";
+"settings.dynamic_type.xxxLarge" = "अति अति बड़ा";
+"settings.dynamic_type.ax1" = "पहुँच M";
+"settings.dynamic_type.ax2" = "पहुँच L";
+"settings.dynamic_type.ax3" = "पहुँच XL";
+"settings.dynamic_type.ax4" = "पहुँच XXL";
+"settings.dynamic_type.ax5" = "पहुँच XXXL";
+"settings.voice" = "आवाज़ से पुष्टि";
+"settings.sos.enable" = "SOS बटन चालू करें";
+"settings.sos.number" = "आपात फ़ोन नंबर";
+"settings.sos.footer" = "स्थानीय आपात नंबर या कोई अन्य भरोसेमंद संपर्क उपयोग करें।";
+"settings.reset_setup" = "सेटअप रीसेट करें";
+"settings.reset_setup.footer" = "पसंदीदा मिटाकर सेटअप फिर चलाता है।";
+"settings.reset_setup.confirm_title" = "सेटअप रीसेट करें?";
+"settings.reset_setup.confirm_message" = "सभी पसंदीदा हट जाएँगे और आप फिर से सेटअप करेंगे।";
+"settings.reset_setup.confirm_action" = "रीसेट";
+"favorites.title" = "पसंदीदा संपर्क";
+"favorites.add.disabled_hint" = "पसंदीदा संपर्क सूची भर चुकी है। नया जोड़ने से पहले एक संपर्क हटाएँ।";
+"settings.link.favorites" = "पसंदीदा संपर्क";
+
+"editor.title" = "पसंदीदा संपादित करें";
+"editor.name" = "नाम";
+"editor.relationship" = "रिश्ता (जैसे: बेटी)";
+"editor.phone" = "फ़ोन नंबर";
+
+"add.title" = "संपर्क चुनें";
+"add.open_contacts" = "संपर्कों से चुनें";
+"add.search" = "नाम खोजें";
+"add.confirm" = "पसंदीदा पुष्टि करें";
+"add.footer" = "सेव करने से पहले फ़ोन नंबर जाँच लें।";
+"add.error.max_favorites" = "इस डिवाइस पर पहले से %lld पसंदीदा की अधिकतम संख्या है।";
+"add.error.duplicate" = "यह व्यक्ति पहले से पसंदीदा में है।";
+"add.phone_picker" = "फ़ोन नंबर";
+"add.new_contact" = "नया संपर्क बनाएँ";
+"add.new_contact_hint" = "किसी नए व्यक्ति को जोड़ने के लिए फ़ोन बुक खोलता है";
+"add.error.no_phone" = "इस संपर्क में फ़ोन नंबर जोड़ें, फिर पुनः प्रयास करें।";
+
+"setup.nav_title" = "सेटअप";
+"setup.permissions.title" = "संपर्कों की अनुमति";
+"setup.permissions.body" = "EasyDial को विश्वसनीय लोगों को बड़े कॉल बटन के रूप में दिखाने के लिए संपर्क अनुमति चाहिए।";
+"setup.permissions.cta" = "संपर्क पहुँच की अनुमति दें";
+"setup.permissions.cta_hint" = "सिस्टम अनुमति संवाद दिखाता है";
+"setup.permissions.denied" = "संपर्क पहुँच आवश्यक है। सेटिंग्स में अनुमति दें, फिर यहाँ वापस आएँ।";
+"setup.permissions.open_settings" = "सेटिंग्स खोलें";
+"setup.pick.title" = "पसंदीदा चुनें";
+"setup.pick.body" = "शामिल करने के लिए नामों पर टैप करें। सेटअप में अधिकतम %lld चुन सकते हैं।";
+"setup.pick.max_reached" = "सेटअप में अधिकतम %lld पसंदीदा चुन सकते हैं।";
+"setup.pick.row_hint" = "इस व्यक्ति को चालू/बंद करता है";
+"setup.relationships.title" = "नाम और नंबर";
+"setup.relationships.body" = "रिश्ते का लेबल जोड़ें और प्रत्येक फ़ोन नंबर की पुष्टि करें।";
+"setup.relationships.body_phone_only" = "प्रत्येक फ़ोन नंबर की पुष्टि करें।";
+"setup.photos.title" = "फ़ोटो";
+"setup.photos.body" = "वैकल्पिक: प्रत्येक व्यक्ति के लिए स्पष्ट चेहरे की फ़ोटो चुनें।";
+"setup.photos.choose" = "फ़ोटो चुनें";
+"setup.photos.change" = "फ़ोटो बदलें";
+"setup.photos.remove" = "फ़ोटो हटाएँ";
+"setup.photos.preview_a11y" = "%@ के लिए चयनित फ़ोटो";
+"setup.photos.a11y_hint" = "आपकी फ़ोटो लाइब्रेरी खोलता है";
+"setup.theme.title" = "शांत थीम चुनें";
+"setup.language.title" = "भाषा चुनें";
+"setup.finish.title" = "कॉल के लिए तैयार";
+"setup.finish.body" = "आपको इनके लिए बड़े बटन दिखेंगे:";
+"setup.finish.item" = "• %@";
+"setup.finish.primary" = "सेटअप समाप्त करें";
+
+"theme.light" = "हल्का";
+"theme.dark" = "गहरा";
+"theme.highContrast" = "उच्च कॉन्ट्रास्ट";
+
+"contact.call" = "कॉल";
+"contact.no_name" = "कोई नाम नहीं";
+
+"relationship.family" = "परिवार";
+"relationship.daughter" = "बेटी";
+"relationship.doctor" = "डॉक्टर";
+
+"speech.calling" = "%@ को कॉल लग रही है";
+"speech.emergency_mode" = "आपात मोड चालू है";
+
+"sos.title" = "SOS";
+"sos.instructions" = "आपात नंबर पर कॉल के लिए इस बटन को लगभग दो सेकंड दबाकर रखें।";
+
+"error.title" = "कुछ गलत हो गया";
+"error.invalid_phone" = "यह फ़ोन नंबर मान्य नहीं लगता।";
+"error.cannot_place_call" = "अभी कॉल नहीं लग पाई।";
+"error.contacts_load" = "संपर्क नहीं पढ़े जा सके। सेटिंग्स में अनुमति जाँचें।";
+"error.save_failed" = "सेव नहीं हो सका। फिर कोशिश करें।";
+
+"validation.name_required" = "कृपया नाम दर्ज करें।";
+"validation.phone_required" = "कृपया फ़ोन नंबर दर्ज करें।";
+"validation.emergency_phone_required" = "मान्य आपात नंबर दर्ज करें, या SOS बंद करें।";
+"validation.emergency_phone_invalid" = "आपात नंबर मान्य नहीं लगता।";
+"recovery.title" = "सहेजा डेटा नहीं खुल सका";
+"recovery.body" = "EasyDial आपके संपर्क और सेटिंग्स लोड नहीं कर सका। आप स्थानीय डेटा रीसेट करके फिर सेटअप कर सकते हैं।";
+"recovery.reset" = "स्थानीय डेटा रीसेट करें";
