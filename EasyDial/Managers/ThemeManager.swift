@@ -2,11 +2,10 @@
 //  ThemeManager.swift
 //  EasyDial
 //
-//  Observes persisted theme + reduce transparency / contrast preferences for SwiftUI injection.
+//  Observes app preferences to apply theme. No longer depends on ModelContext.
 //
 
 import Combine
-import SwiftData
 import SwiftUI
 
 @MainActor
@@ -14,35 +13,23 @@ final class ThemeManager: ObservableObject {
     @Published private(set) var currentTheme: AppTheme = .light
     @Published private(set) var colors: ThemeColors = ThemeColors.palette(for: .light)
 
-    private var modelContext: ModelContext?
+    private var cancellables = Set<AnyCancellable>()
 
-    func attach(modelContext: ModelContext) {
-        self.modelContext = modelContext
-        refreshFromStore()
-    }
-
-    func refreshFromStore() {
-        guard let ctx = modelContext else { return }
-        let fd = FetchDescriptor<AppPreferences>()
-        if let prefs = try? ctx.fetch(fd).first {
-            apply(theme: prefs.theme)
-        } else {
-            apply(theme: .light)
-        }
+    /// Subscribes to AppStore.$preferences and auto-applies theme on every change.
+    func attach(store: AppStore) {
+        store.$preferences
+            .compactMap { $0?.theme }
+            .removeDuplicates()
+            .sink { [weak self] theme in
+                self?.apply(theme: theme)
+            }
+            .store(in: &cancellables)
+        // Apply immediately from whatever is currently loaded.
+        apply(theme: store.preferences?.theme ?? .light)
     }
 
     func apply(theme: AppTheme) {
         currentTheme = theme
         colors = ThemeColors.palette(for: theme)
-    }
-
-    func persist(theme: AppTheme) {
-        guard let ctx = modelContext else { return }
-        let fd = FetchDescriptor<AppPreferences>()
-        if let prefs = try? ctx.fetch(fd).first {
-            prefs.theme = theme
-        }
-        apply(theme: theme)
-        try? ctx.save()
     }
 }

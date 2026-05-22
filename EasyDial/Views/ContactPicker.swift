@@ -2,83 +2,76 @@
 //  ContactPicker.swift
 //  EasyDial
 //
-//  Presents the system Contacts picker modally (required by ContactsUI).
+//  Presents CNContactPickerViewController directly on the hosting UIViewController.
+//  No intermediate SwiftUI sheet — zero blank-screen flash.
 //
 
 import Contacts
 import ContactsUI
 import SwiftUI
 
-/// Result from the system contact picker.
+// MARK: - Result type
+
 enum ContactPickerSelection {
     case contact(CNContact)
     case phone(contact: CNContact, number: String)
 }
 
-/// Host view controller — `CNContactPickerViewController` must be presented modally, not used as the representable root.
-final class ContactPickerHostViewController: UIViewController {
-    var excludedContactIdentifiers: Set<String> = []
-    weak var coordinator: ContactPicker.Coordinator?
-    private var didPresentPicker = false
+// MARK: - SwiftUI view modifier
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .systemGroupedBackground
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        guard !didPresentPicker else { return }
-        didPresentPicker = true
-        presentConfiguredPicker()
-    }
-
-    private func presentConfiguredPicker() {
-        let picker = CNContactPickerViewController()
-        picker.delegate = coordinator
-
-        // Do not set `displayedPropertyKeys` — that mode forces users into contact detail
-        // to pick a phone line. Leaving it unset lets a row tap select the contact and dismiss.
-
-        var enablingPredicates: [NSPredicate] = [
-            NSPredicate(format: "phoneNumbers.@count > 0")
-        ]
-        if !excludedContactIdentifiers.isEmpty {
-            enablingPredicates.append(
-                NSPredicate(
-                    format: "NOT (identifier IN %@)",
-                    Array(excludedContactIdentifiers)
-                )
+extension View {
+    /// Presents the system Contacts picker directly on the hosting UIViewController.
+    /// No SwiftUI sheet is involved, so there is no blank intermediate modal.
+    func contactPicker(
+        isPresented: Binding<Bool>,
+        excludedContactIdentifiers: Set<String> = [],
+        excludedSanitizedPhones: Set<String> = [],
+        onCancel: @escaping () -> Void,
+        onDuplicate: @escaping () -> Void,
+        onPick: @escaping (ContactPickerSelection) -> Void
+    ) -> some View {
+        self.background(
+            _ContactPickerPresenter(
+                isPresented: isPresented,
+                excludedContactIdentifiers: excludedContactIdentifiers,
+                excludedSanitizedPhones: excludedSanitizedPhones,
+                onCancel: onCancel,
+                onDuplicate: onDuplicate,
+                onPick: onPick
             )
-        }
-        picker.predicateForEnablingContact = NSCompoundPredicate(andPredicateWithSubpredicates: enablingPredicates)
-
-        present(picker, animated: true)
+        )
     }
 }
 
-struct ContactPicker: UIViewControllerRepresentable {
-    var excludedContactIdentifiers: Set<String> = []
-    var excludedSanitizedPhones: Set<String> = []
+// MARK: - Zero-size UIViewControllerRepresentable
+
+private struct _ContactPickerPresenter: UIViewControllerRepresentable {
+    @Binding var isPresented: Bool
+    var excludedContactIdentifiers: Set<String>
+    var excludedSanitizedPhones: Set<String>
     var onCancel: () -> Void
     var onDuplicate: () -> Void
     var onPick: (ContactPickerSelection) -> Void
 
-    func makeUIViewController(context: Context) -> ContactPickerHostViewController {
-        let host = ContactPickerHostViewController()
-        host.coordinator = context.coordinator
-        host.excludedContactIdentifiers = excludedContactIdentifiers
-        return host
+    func makeUIViewController(context: Context) -> _ContactPickerHost {
+        _ContactPickerHost()
     }
 
-    func updateUIViewController(_ uiViewController: ContactPickerHostViewController, context: Context) {
-        uiViewController.excludedContactIdentifiers = excludedContactIdentifiers
+    func updateUIViewController(_ vc: _ContactPickerHost, context: Context) {
         context.coordinator.excludedContactIdentifiers = excludedContactIdentifiers
         context.coordinator.excludedSanitizedPhones = excludedSanitizedPhones
+        context.coordinator.host = vc
+
+        if isPresented && !vc.isPickerPresented {
+            vc.isPickerPresented = true
+            let picker = buildPicker(coordinator: context.coordinator)
+            vc.present(picker, animated: true)
+        }
     }
 
     func makeCoordinator() -> Coordinator {
         Coordinator(
+            isPresented: $isPresented,
             excludedContactIdentifiers: excludedContactIdentifiers,
             excludedSanitizedPhones: excludedSanitizedPhones,
             onCancel: onCancel,
@@ -87,21 +80,47 @@ struct ContactPicker: UIViewControllerRepresentable {
         )
     }
 
+    private func buildPicker(coordinator: Coordinator) -> CNContactPickerViewController {
+        let picker = CNContactPickerViewController()
+        picker.delegate = coordinator
+
+        var predicates: [NSPredicate] = [
+            NSPredicate(format: "phoneNumbers.@count > 0")
+        ]
+        if !excludedContactIdentifiers.isEmpty {
+            predicates.append(
+                NSPredicate(
+                    format: "NOT (identifier IN %@)",
+                    Array(excludedContactIdentifiers)
+                )
+            )
+        }
+        picker.predicateForEnablingContact =
+            NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
+        return picker
+    }
+
+    // MARK: Coordinator
+
     final class Coordinator: NSObject, CNContactPickerDelegate {
+        @Binding var isPresented: Bool
         var excludedContactIdentifiers: Set<String>
         var excludedSanitizedPhones: Set<String>
         private let onCancel: () -> Void
         private let onDuplicate: () -> Void
         private let onPick: (ContactPickerSelection) -> Void
-        private var didDeliverSelection = false
+        private var didDeliver = false
+        weak var host: _ContactPickerHost?
 
         init(
+            isPresented: Binding<Bool>,
             excludedContactIdentifiers: Set<String>,
             excludedSanitizedPhones: Set<String>,
             onCancel: @escaping () -> Void,
             onDuplicate: @escaping () -> Void,
             onPick: @escaping (ContactPickerSelection) -> Void
         ) {
+            _isPresented = isPresented
             self.excludedContactIdentifiers = excludedContactIdentifiers
             self.excludedSanitizedPhones = excludedSanitizedPhones
             self.onCancel = onCancel
@@ -110,18 +129,15 @@ struct ContactPicker: UIViewControllerRepresentable {
         }
 
         func contactPickerDidCancel(_ picker: CNContactPickerViewController) {
-            picker.dismiss(animated: true) { [weak self] in
-                guard let self else { return }
-                self.deliverOnMain { self.onCancel() }
-            }
+            finish(picker) { self.onCancel() }
         }
 
         func contactPicker(_ picker: CNContactPickerViewController, didSelect contact: CNContact) {
             if excludedContactIdentifiers.contains(contact.identifier) {
-                deliverDuplicate(from: picker)
-                return
+                finish(picker) { self.onDuplicate() }
+            } else {
+                finish(picker) { self.onPick(.contact(contact)) }
             }
-            deliverSelection(.contact(contact), from: picker)
         }
 
         func contactPicker(
@@ -129,49 +145,44 @@ struct ContactPicker: UIViewControllerRepresentable {
             didSelect contactProperty: CNContactProperty
         ) {
             let contact = contactProperty.contact
-            if excludedContactIdentifiers.contains(contact.identifier) {
-                deliverDuplicate(from: picker)
-                return
-            }
-
             guard let phone = contactProperty.value as? CNPhoneNumber else { return }
             let raw = phone.stringValue
             let sanitized = CallService.sanitizePhone(raw)
             guard !sanitized.isEmpty else { return }
 
-            if excludedSanitizedPhones.contains(sanitized) {
-                deliverDuplicate(from: picker)
-                return
-            }
-
-            deliverSelection(.phone(contact: contact, number: raw), from: picker)
-        }
-
-        private func deliverDuplicate(from picker: CNContactPickerViewController) {
-            guard !didDeliverSelection else { return }
-            picker.dismiss(animated: true) { [weak self] in
-                guard let self else { return }
-                self.deliverOnMain { self.onDuplicate() }
-            }
-        }
-
-        private func deliverSelection(_ selection: ContactPickerSelection, from picker: CNContactPickerViewController) {
-            guard !didDeliverSelection else { return }
-            didDeliverSelection = true
-            picker.dismiss(animated: true) { [weak self] in
-                guard let self else { return }
-                self.deliverOnMain {
-                    self.onPick(selection)
-                }
-            }
-        }
-
-        private func deliverOnMain(_ action: @escaping () -> Void) {
-            if Thread.isMainThread {
-                action()
+            if excludedContactIdentifiers.contains(contact.identifier)
+                || excludedSanitizedPhones.contains(sanitized) {
+                finish(picker) { self.onDuplicate() }
             } else {
-                DispatchQueue.main.async(execute: action)
+                finish(picker) { self.onPick(.phone(contact: contact, number: raw)) }
             }
         }
+
+        private func finish(_ picker: CNContactPickerViewController, action: @escaping () -> Void) {
+            guard !didDeliver else { return }
+            didDeliver = true
+            picker.dismiss(animated: true) { [weak self] in
+                guard let self else { return }
+                // Reset the host flag here — viewDidAppear on a zero-size
+                // background VC is not reliable after UIKit modal dismissal.
+                self.host?.isPickerPresented = false
+                self.isPresented = false
+                self.didDeliver = false
+                DispatchQueue.main.async { action() }
+            }
+        }
+    }
+}
+
+// MARK: - Transparent zero-size host
+
+final class _ContactPickerHost: UIViewController {
+    var isPickerPresented = false
+
+    override func loadView() {
+        let v = UIView()
+        v.backgroundColor = .clear
+        v.isUserInteractionEnabled = false
+        view = v
     }
 }

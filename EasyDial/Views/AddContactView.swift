@@ -6,17 +6,14 @@
 //
 
 import Contacts
-import SwiftData
 import SwiftUI
 
 struct AddContactView: View {
     @Environment(\.dismiss) private var dismiss
-    @Environment(\.modelContext) private var modelContext
     @Environment(\.appServices) private var services
     @Environment(\.locale) private var locale
     @EnvironmentObject private var themeManager: ThemeManager
-
-    @Query(sort: \FavoriteContact.sortOrder) private var favorites: [FavoriteContact]
+    @EnvironmentObject private var store: AppStore
 
     @State private var showContactPicker = false
     @State private var permissionDenied = false
@@ -31,19 +28,14 @@ struct AddContactView: View {
     @State private var isPreparingPicker = false
     @State private var didAutoPresentPicker = false
 
+    private var favorites: [FavoriteContact] { store.favorites }
     private var favoriteLimit: Int { AppConfiguration.shared.maxTotalFavoriteContacts }
     private var importValidator: FavoriteImportValidator {
         FavoriteImportValidator(favorites: favorites, limit: favoriteLimit)
     }
     private var isAtFavoriteLimit: Bool { !importValidator.canAdd }
-
-    private var excludedContactIdentifiers: Set<String> {
-        importValidator.excludedContactIDs
-    }
-
-    private var excludedSanitizedPhones: Set<String> {
-        importValidator.excludedPhones
-    }
+    private var excludedContactIdentifiers: Set<String> { importValidator.excludedContactIDs }
+    private var excludedSanitizedPhones: Set<String> { importValidator.excludedPhones }
 
     var body: some View {
         Group {
@@ -91,25 +83,23 @@ struct AddContactView: View {
                 }
             }
         }
-        .fullScreenCover(isPresented: $showContactPicker, onDismiss: { showContactPicker = false }) {
-            ContactPicker(
-                excludedContactIdentifiers: excludedContactIdentifiers,
-                excludedSanitizedPhones: excludedSanitizedPhones,
-                onCancel: {
-                    showContactPicker = false
-                    dismiss()
-                },
-                onDuplicate: {
-                    showContactPicker = false
-                    pickNotice = L10n.string("add.error.duplicate", locale: locale)
-                },
-                onPick: { selection in
-                    showContactPicker = false
-                    handlePickerSelection(selection)
-                }
-            )
-            .ignoresSafeArea()
-        }
+        .contactPicker(
+            isPresented: $showContactPicker,
+            excludedContactIdentifiers: excludedContactIdentifiers,
+            excludedSanitizedPhones: excludedSanitizedPhones,
+            onCancel: {
+                showContactPicker = false
+                dismiss()
+            },
+            onDuplicate: {
+                showContactPicker = false
+                pickNotice = L10n.string("add.error.duplicate", locale: locale)
+            },
+            onPick: { selection in
+                showContactPicker = false
+                handlePickerSelection(selection)
+            }
+        )
         .sheet(isPresented: $showNewContact) {
             NewContactComposer { contact in
                 showNewContact = false
@@ -217,9 +207,7 @@ struct AddContactView: View {
                 }
             }
             .navigationTitle(Text(L10n.string("add.confirm", locale: locale)))
-            .onAppear {
-                syncPickedPhone(for: contact)
-            }
+            .onAppear { syncPickedPhone(for: contact) }
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button(L10n.string("common.cancel", locale: locale)) {
@@ -242,10 +230,7 @@ struct AddContactView: View {
 
     private func syncPickedPhone(for contact: ImportedContact) {
         let phones = contact.phoneNumbers
-        guard !phones.isEmpty else {
-            pickedPhone = ""
-            return
-        }
+        guard !phones.isEmpty else { pickedPhone = ""; return }
         if phones.contains(pickedPhone) { return }
         pickedPhone = phones[0]
     }
@@ -308,18 +293,14 @@ struct AddContactView: View {
             pickNotice = message(for: .atFavoriteLimit)
             return
         }
-
         let contact: CNContact
         let preselectedPhone: String?
         switch selection {
         case .contact(let picked):
-            contact = picked
-            preselectedPhone = nil
+            contact = picked; preselectedPhone = nil
         case .phone(let picked, let number):
-            contact = picked
-            preselectedPhone = number
+            contact = picked; preselectedPhone = number
         }
-
         guard let imported = services.contacts.resolveImport(
             pickerContact: contact,
             preselectedPhone: preselectedPhone,
@@ -328,14 +309,12 @@ struct AddContactView: View {
             pickNotice = message(for: .noDialablePhone)
             return
         }
-
         let initialPhone = imported.phoneNumbers.first ?? ""
         let sanitized = CallService.sanitizePhone(initialPhone)
         if let issue = importValidator.issue(contactID: imported.id, sanitizedPhone: sanitized) {
             pickNotice = message(for: issue)
             return
         }
-
         pickNotice = nil
         selected = imported
         pickedPhone = initialPhone
@@ -404,12 +383,10 @@ struct AddContactView: View {
             displayName: contact.displayName,
             relationshipLabel: FavoriteContact.hiddenRelationshipLabel,
             phoneNumber: sanitized,
-            photoData: ImageDataOptimizer.thumbnailJPEG(from: contact.thumbnailImageData),
             cnContactIdentifier: contact.id
         )
-        modelContext.insert(favorite)
         do {
-            try modelContext.saveOrThrow()
+            try store.insertFavorite(favorite, photoData: contact.thumbnailImageData)
             dismiss()
         } catch {
             duplicateError = L10n.string("error.save_failed", locale: locale)
@@ -423,6 +400,6 @@ struct AddContactView: View {
     }
     .environment(\.appServices, AppServices())
     .environmentObject(ThemeManager())
+    .environmentObject(AppStore.preview)
     .environment(\.locale, Locale(identifier: "en"))
-    .modelContainer(PreviewSampleData.container)
 }

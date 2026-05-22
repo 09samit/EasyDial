@@ -2,32 +2,29 @@
 //  FavoriteContact.swift
 //  EasyDial
 //
-//  SwiftData model for a favorite contact shown on the home grid.
+//  Plain Swift struct for a favorite contact shown on the home grid.
+//  No Core Data / SwiftData imports — views stay persistence-agnostic.
 //
 
 import Foundation
-import SwiftData
 
-/// A persisted favorite contact row. Stores denormalized fields so calling works without Contacts access at tap time.
-@Model
-final class FavoriteContact {
+/// A value-type snapshot of a persisted favorite contact.
+/// Photos are stored as files in the App Group container; this struct holds no image data.
+struct FavoriteContact: Identifiable, Hashable {
     var id: UUID
-    /// Stable ordering on the home screen (lower appears first).
+    /// Stable ordering on the home screen (lower = appears first).
     var sortOrder: Int
     var displayName: String
-    /// Legacy field kept for SwiftData compatibility; not shown in the UI.
+    /// Legacy field kept for migration compatibility; not shown in the UI.
     var relationshipLabel: String
-
-    /// Stored value for favorites when the relationship field is hidden app-wide.
-    static let hiddenRelationshipLabel = ""
     /// Sanitized phone string suitable for `tel:` URLs (digits and leading +).
     var phoneNumber: String
-    /// Optional square photo bytes copied from Contacts or Photos.
-    @Attribute(.externalStorage)
-    var photoData: Data?
     /// Optional link back to the system contact for future refresh flows.
     var cnContactIdentifier: String?
     var createdAt: Date
+
+    /// Stored value used when the relationship field is hidden app-wide.
+    static let hiddenRelationshipLabel = ""
 
     init(
         id: UUID = UUID(),
@@ -35,7 +32,6 @@ final class FavoriteContact {
         displayName: String,
         relationshipLabel: String,
         phoneNumber: String,
-        photoData: Data? = nil,
         cnContactIdentifier: String? = nil,
         createdAt: Date = Date()
     ) {
@@ -44,7 +40,6 @@ final class FavoriteContact {
         self.displayName = displayName
         self.relationshipLabel = relationshipLabel
         self.phoneNumber = phoneNumber
-        self.photoData = photoData
         self.cnContactIdentifier = cnContactIdentifier
         self.createdAt = createdAt
     }

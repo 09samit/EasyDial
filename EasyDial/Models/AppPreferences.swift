@@ -2,14 +2,13 @@
 //  AppPreferences.swift
 //  EasyDial
 //
-//  Single-row app settings stored with SwiftData for reliability across launches.
+//  Plain Swift struct for single-row app settings.
+//  No Core Data / SwiftData imports — views stay persistence-agnostic.
 //
 
 import Foundation
-import SwiftData
 
-@Model
-final class AppPreferences {
+struct AppPreferences {
     var id: UUID
     var hasCompletedSetup: Bool
     var themeRaw: String
@@ -55,7 +54,7 @@ final class AppPreferences {
         }
     }
 
-    /// Trimmed emergency number suitable for dialing; empty when invalid.
+    /// Trimmed emergency number suitable for dialing; empty string when invalid.
     var sanitizedEmergencyPhoneNumber: String {
         CallService.sanitizePhone(emergencyPhoneNumber)
     }

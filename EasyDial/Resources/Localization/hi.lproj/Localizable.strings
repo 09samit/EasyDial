@@ -83,7 +83,7 @@
 
 "setup.nav_title" = "सेटअप";
 "setup.permissions.title" = "संपर्कों की अनुमति";
-"setup.permissions.body" = "EasyDial को विश्वसनीय लोगों को बड़े कॉल बटन के रूप में दिखाने के लिए संपर्क अनुमति चाहिए।";
+"setup.permissions.body" = "CallNest को विश्वसनीय लोगों को बड़े कॉल बटन के रूप में दिखाने के लिए संपर्क अनुमति चाहिए।";
 "setup.permissions.cta" = "संपर्क पहुँच की अनुमति दें";
 "setup.permissions.cta_hint" = "सिस्टम अनुमति संवाद दिखाता है";
 "setup.permissions.denied" = "संपर्क पहुँच आवश्यक है। सेटिंग्स में अनुमति दें, फिर यहाँ वापस आएँ।";
@@ -91,6 +91,7 @@
 "setup.pick.title" = "पसंदीदा चुनें";
 "setup.pick.body" = "शामिल करने के लिए नामों पर टैप करें। सेटअप में अधिकतम %lld चुन सकते हैं।";
 "setup.pick.max_reached" = "सेटअप में अधिकतम %lld पसंदीदा चुन सकते हैं।";
+"setup.pick.no_results" = "कोई संपर्क नहीं मिला।";
 "setup.pick.row_hint" = "इस व्यक्ति को चालू/बंद करता है";
 "setup.relationships.title" = "नाम और नंबर";
 "setup.relationships.body" = "रिश्ते का लेबल जोड़ें और प्रत्येक फ़ोन नंबर की पुष्टि करें।";
@@ -137,5 +138,5 @@
 "validation.emergency_phone_required" = "मान्य आपात नंबर दर्ज करें, या SOS बंद करें।";
 "validation.emergency_phone_invalid" = "आपात नंबर मान्य नहीं लगता।";
 "recovery.title" = "सहेजा डेटा नहीं खुल सका";
-"recovery.body" = "EasyDial आपके संपर्क और सेटिंग्स लोड नहीं कर सका। आप स्थानीय डेटा रीसेट करके फिर सेटअप कर सकते हैं।";
+"recovery.body" = "CallNest आपके संपर्क और सेटिंग्स लोड नहीं कर सका। आप स्थानीय डेटा रीसेट करके फिर सेटअप कर सकते हैं।";
 "recovery.reset" = "स्थानीय डेटा रीसेट करें";

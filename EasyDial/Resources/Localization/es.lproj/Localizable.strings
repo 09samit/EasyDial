@@ -83,7 +83,7 @@
 
 "setup.nav_title" = "Configuración";
 "setup.permissions.title" = "Permitir contactos";
-"setup.permissions.body" = "EasyDial necesita acceso a Contactos para elegir personas de confianza como botones grandes.";
+"setup.permissions.body" = "CallNest necesita acceso a Contactos para elegir personas de confianza como botones grandes.";
 "setup.permissions.cta" = "Permitir acceso a contactos";
 "setup.permissions.cta_hint" = "Muestra el diálogo del sistema";
 "setup.permissions.denied" = "Se requiere acceso a Contactos. Permítalo en Ajustes y vuelva aquí.";
@@ -91,6 +91,7 @@
 "setup.pick.title" = "Elegir favoritos";
 "setup.pick.body" = "Pulse los nombres para incluirlos. Puede elegir hasta %lld en la configuración.";
 "setup.pick.max_reached" = "Puede seleccionar como máximo %lld favoritos en la configuración.";
+"setup.pick.no_results" = "No se encontraron contactos.";
 "setup.pick.row_hint" = "Activa o desactiva esta persona";
 "setup.relationships.title" = "Nombres y números";
 "setup.relationships.body" = "Añada una etiqueta de relación y confirme cada número.";
@@ -137,5 +138,5 @@
 "validation.emergency_phone_required" = "Introduzca un número de emergencia válido o desactive SOS.";
 "validation.emergency_phone_invalid" = "Ese número de emergencia no parece válido.";
 "recovery.title" = "No se pueden abrir los datos guardados";
-"recovery.body" = "EasyDial no pudo cargar sus contactos y ajustes. Puede restablecer los datos locales y volver a configurar.";
+"recovery.body" = "CallNest no pudo cargar sus contactos y ajustes. Puede restablecer los datos locales y volver a configurar.";
 "recovery.reset" = "Restablecer datos locales";

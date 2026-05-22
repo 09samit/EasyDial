@@ -14,16 +14,18 @@ final class ContactViewModel: ObservableObject {
     @Published var phoneNumber: String = ""
     @Published var photoData: Data?
 
-    func reset(from contact: FavoriteContact?) {
-        guard let contact else {
-            displayName = ""
-            phoneNumber = ""
-            photoData = nil
-            return
-        }
+    /// Whether the user explicitly changed the photo during this edit session.
+    var photoChanged = false
+    /// Whether the user explicitly removed the photo during this edit session.
+    var photoRemoved = false
+
+    /// Resets form state from a saved contact, loading photo from the provided storage.
+    func reset(from contact: FavoriteContact, photoStorage: any ContactPhotoStorage) {
         displayName = contact.displayName
         phoneNumber = contact.phoneNumber
-        photoData = contact.photoData
+        photoData = photoStorage.load(for: contact.id)
+        photoChanged = false
+        photoRemoved = false
     }
 
     func validate(locale: Locale) -> String? {

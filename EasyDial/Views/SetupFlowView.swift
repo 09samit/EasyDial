@@ -5,35 +5,27 @@
 //  First-run setup: permissions → picks → labels → photos → theme → language → finish.
 //
 
-import Contacts
 import PhotosUI
-import SwiftData
 import SwiftUI
-import UIKit
 
 struct SetupFlowView: View {
-    @Environment(\.modelContext) private var modelContext
     @Environment(\.appServices) private var services
     @Environment(\.locale) private var locale
     @EnvironmentObject private var themeManager: ThemeManager
-
-    @Query(sort: \AppPreferences.id) private var preferencesQuery: [AppPreferences]
+    @EnvironmentObject private var store: AppStore
 
     @StateObject private var setupVM = SetupViewModel()
 
-    private var preferences: AppPreferences? { preferencesQuery.first }
-
+    private var preferences: AppPreferences? { store.preferences }
     private var setupPickCap: Int { AppConfiguration.shared.maxFavoriteContactsDuringSetup }
 
     @State private var setupPickLimitNotice: String?
-    @State private var showNewContact = false
-    @State private var newContactNotice: String?
+    @State private var setupSearchQuery = ""
 
     var body: some View {
         NavigationStack {
             ZStack {
                 themeManager.colors.background.ignoresSafeArea()
-
                 VStack(spacing: 14) {
                     segmentedProgressBar
                         .padding(.horizontal, 20)
@@ -43,26 +35,20 @@ struct SetupFlowView: View {
                         setupContentCard {
                             VStack(alignment: .leading, spacing: 18) {
                                 switch setupVM.step {
-                                case .permissions:
-                                    permissionsStep
-                                case .pickContacts:
-                                    pickContactsStep
-                                case .relationships:
-                                    relationshipsStep
-                                case .photos:
-                                    photosStep
-                                case .theme:
-                                    themeStep
-                                case .language:
-                                    languageStep
-                                case .finish:
-                                    finishStep
+                                case .permissions:   permissionsStep
+                                case .pickContacts:  pickContactsStep
+                                case .relationships: relationshipsStep
+                                case .photos:        photosStep
+                                case .theme:         themeStep
+                                case .language:      languageStep
+                                case .finish:        finishStep
                                 }
                             }
                         }
                         .padding(.horizontal, 16)
                         .padding(.bottom, 8)
                     }
+                    .scrollDismissesKeyboard(.interactively)
 
                     if setupVM.step != .permissions {
                         navigationButtons
@@ -72,22 +58,12 @@ struct SetupFlowView: View {
                 }
             }
             .navigationTitle(Text(L10n.string("setup.nav_title", locale: locale)))
-            .onAppear {
-                themeManager.attach(modelContext: modelContext)
-                themeManager.refreshFromStore()
-            }
             .onChange(of: setupVM.step) { _, step in
                 if step == .pickContacts {
                     loadImportsIfNeeded()
                     setupPickLimitNotice = nil
+                    setupSearchQuery = ""
                 }
-            }
-            .sheet(isPresented: $showNewContact) {
-                NewContactComposer { contact in
-                    showNewContact = false
-                    handleNewContactSaved(contact)
-                }
-                .ignoresSafeArea()
             }
         }
     }
@@ -179,6 +155,14 @@ struct SetupFlowView: View {
         }
     }
 
+    private var filteredSetupContacts: [ImportedContact] {
+        let query = setupSearchQuery.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !query.isEmpty else { return setupVM.importedContacts }
+        return setupVM.importedContacts.filter {
+            $0.displayName.localizedCaseInsensitiveContains(query)
+        }
+    }
+
     private var pickContactsStep: some View {
         VStack(alignment: .leading, spacing: 12) {
             Text(L10n.string("setup.pick.title", locale: locale))
@@ -200,78 +184,98 @@ struct SetupFlowView: View {
                     .foregroundStyle(themeManager.colors.primaryButton)
                     .accessibilityAddTraits(.isStaticText)
             }
-
             if let err = setupVM.loadError {
                 Text(err)
                     .font(.body.weight(.semibold))
                     .foregroundStyle(themeManager.colors.emergency)
             }
 
-            if let newContactNotice {
-                Text(newContactNotice)
-                    .font(.body.weight(.semibold))
-                    .foregroundStyle(themeManager.colors.emergency)
-            }
-
-            Button {
-                newContactNotice = nil
-                showNewContact = true
-            } label: {
-                Label(
-                    L10n.string("add.new_contact", locale: locale),
-                    systemImage: "person.crop.circle.badge.plus"
-                )
-                .font(.title3.weight(.bold))
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.vertical, 8)
-            }
-            .accessibilityHint(Text(L10n.string("add.new_contact_hint", locale: locale)))
-
-            List {
-                ForEach(setupVM.importedContacts) { contact in
+            // Search bar
+            HStack(spacing: 8) {
+                Image(systemName: "magnifyingglass")
+                    .foregroundStyle(themeManager.colors.secondaryText)
+                    .accessibilityHidden(true)
+                TextField(L10n.string("add.search", locale: locale), text: $setupSearchQuery)
+                    .font(.body)
+                    .foregroundStyle(themeManager.colors.primaryText)
+                    .autocorrectionDisabled()
+                    .textInputAutocapitalization(.never)
+                    .accessibilityLabel(Text(L10n.string("add.search", locale: locale)))
+                if !setupSearchQuery.isEmpty {
                     Button {
-                        if setupVM.selectedImports.contains(contact.id) {
-                            setupVM.selectedImports.remove(contact.id)
-                            setupPickLimitNotice = nil
-                        } else if setupVM.selectedImports.count >= setupPickCap {
-                            setupPickLimitNotice = String(
-                                format: L10n.string("setup.pick.max_reached", locale: locale),
-                                locale: locale,
-                                arguments: [Int64(setupPickCap)]
-                            )
-                        } else {
-                            setupVM.selectedImports.insert(contact.id)
-                            setupPickLimitNotice = nil
-                        }
+                        setupSearchQuery = ""
                     } label: {
-                        HStack(alignment: .center, spacing: 12) {
-                            Image(systemName: setupVM.selectedImports.contains(contact.id) ? "checkmark.circle.fill" : "circle")
+                        Image(systemName: "xmark.circle.fill")
+                            .foregroundStyle(themeManager.colors.secondaryText)
+                    }
+                    .accessibilityLabel(Text(L10n.string("common.cancel", locale: locale)))
+                }
+            }
+            .padding(.horizontal, 12)
+            .padding(.vertical, 10)
+            .background(themeManager.colors.background)
+            .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
+            .overlay(RoundedRectangle(cornerRadius: 12).stroke(themeManager.colors.divider))
+
+            if filteredSetupContacts.isEmpty && !setupSearchQuery.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+                Text(L10n.string("setup.pick.no_results", locale: locale))
+                    .font(.body)
+                    .foregroundStyle(themeManager.colors.secondaryText)
+                    .frame(maxWidth: .infinity, alignment: .center)
+                    .padding(.vertical, 24)
+            } else {
+                LazyVStack(spacing: 0) {
+                    ForEach(filteredSetupContacts) { contact in
+                        Button {
+                            if setupVM.selectedImports.contains(contact.id) {
+                                setupVM.selectedImports.remove(contact.id)
+                                setupPickLimitNotice = nil
+                            } else if setupVM.selectedImports.count >= setupPickCap {
+                                setupPickLimitNotice = String(
+                                    format: L10n.string("setup.pick.max_reached", locale: locale),
+                                    locale: locale,
+                                    arguments: [Int64(setupPickCap)]
+                                )
+                            } else {
+                                setupVM.selectedImports.insert(contact.id)
+                                setupPickLimitNotice = nil
+                            }
+                        } label: {
+                            HStack(alignment: .center, spacing: 12) {
+                                Image(
+                                    systemName: setupVM.selectedImports.contains(contact.id)
+                                        ? "checkmark.circle.fill"
+                                        : "circle"
+                                )
                                 .font(.title2.weight(.bold))
                                 .foregroundStyle(themeManager.colors.primaryButton)
                                 .accessibilityHidden(true)
-                            VStack(alignment: .leading, spacing: 4) {
-                                Text(contact.displayName)
-                                    .font(.title3.weight(.bold))
-                                    .foregroundStyle(themeManager.colors.primaryText)
-                                if let phone = contact.phoneNumbers.first {
-                                    Text(phone)
-                                        .font(.body)
-                                        .foregroundStyle(themeManager.colors.secondaryText)
+                                VStack(alignment: .leading, spacing: 4) {
+                                    Text(contact.displayName)
+                                        .font(.title3.weight(.bold))
+                                        .foregroundStyle(themeManager.colors.primaryText)
+                                    if let phone = contact.phoneNumbers.first {
+                                        Text(phone)
+                                            .font(.body)
+                                            .foregroundStyle(themeManager.colors.secondaryText)
+                                    }
                                 }
+                                Spacer()
                             }
-                            Spacer()
+                            .padding(.vertical, 10)
+                            .contentShape(Rectangle())
                         }
-                        .padding(.vertical, 6)
+                        .accessibilityLabel(Text(contact.displayName))
+                        .accessibilityHint(Text(L10n.string("setup.pick.row_hint", locale: locale)))
+                        .accessibilityAddTraits(.isButton)
+
+                        if contact.id != filteredSetupContacts.last?.id {
+                            Divider()
+                                .background(themeManager.colors.divider)
+                        }
                     }
-                    .accessibilityLabel(Text(contact.displayName))
-                    .accessibilityHint(Text(L10n.string("setup.pick.row_hint", locale: locale)))
-                    .accessibilityAddTraits(.isButton)
-                    .listRowBackground(themeManager.colors.cardBackground)
                 }
             }
-            .listStyle(.plain)
-            .scrollContentBackground(.hidden)
-            .frame(minHeight: 320)
         }
     }
 
@@ -316,7 +320,6 @@ struct SetupFlowView: View {
             Text(L10n.string("setup.photos.body", locale: locale))
                 .font(.title3)
                 .foregroundStyle(themeManager.colors.secondaryText)
-
             ForEach(setupVM.drafts) { draft in
                 SetupPhotoRow(draftId: draft.id, setupVM: setupVM, colors: themeManager.colors)
             }
@@ -331,11 +334,8 @@ struct SetupFlowView: View {
             Picker(L10n.string("settings.theme", locale: locale), selection: Binding(
                 get: { preferences?.theme ?? .light },
                 set: { newValue in
-                    if let prefs = preferences {
-                        prefs.theme = newValue
-                        themeManager.apply(theme: newValue)
-                        try? modelContext.saveOrThrow()
-                    }
+                    try? store.updatePreferences { $0.theme = newValue }
+                    themeManager.apply(theme: newValue)
                 }
             )) {
                 ForEach(AppTheme.allCases) { theme in
@@ -352,13 +352,16 @@ struct SetupFlowView: View {
             Text(L10n.string("setup.language.title", locale: locale))
                 .font(.largeTitle.weight(.bold))
                 .foregroundStyle(themeManager.colors.primaryText)
-                Picker(L10n.string("settings.language", locale: locale), selection: Binding(
-                    get: { AppLanguage.resolved(from: preferences?.preferredLanguageCode ?? AppLanguage.english.rawValue) },
-                    set: { lang in
-                        preferences?.preferredLanguageCode = lang.rawValue
-                        try? modelContext.saveOrThrow()
-                    }
-                )) {
+            Picker(L10n.string("settings.language", locale: locale), selection: Binding(
+                get: {
+                    AppLanguage.resolved(
+                        from: preferences?.preferredLanguageCode ?? AppLanguage.english.rawValue
+                    )
+                },
+                set: { lang in
+                    try? store.updatePreferences { $0.preferredLanguageCode = lang.rawValue }
+                }
+            )) {
                 ForEach(AppLanguage.allCases) { lang in
                     Text(lang.nativeTitle).tag(lang)
                 }
@@ -393,8 +396,8 @@ struct SetupFlowView: View {
                             arguments: [draft.displayName]
                         )
                     )
-                        .font(.title3.weight(.semibold))
-                        .foregroundStyle(themeManager.colors.primaryText)
+                    .font(.title3.weight(.semibold))
+                    .foregroundStyle(themeManager.colors.primaryText)
                 }
             }
             .accessibilityElement(children: .combine)
@@ -416,69 +419,53 @@ struct SetupFlowView: View {
                 .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
             }
 
-            Button(nextTitle) {
-                advance()
-            }
-            .font(.title3.weight(.bold))
-            .padding(.vertical, 16)
-            .frame(maxWidth: .infinity, minHeight: 56)
-            .background(canContinue ? themeManager.colors.primaryButton : themeManager.colors.secondaryText.opacity(0.35))
-            .foregroundStyle(themeManager.colors.onPrimaryButton)
-            .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
-            .disabled(!canContinue)
-            .accessibilityHint(Text(L10n.string("a11y.setup_next_hint", locale: locale)))
+            Button(nextTitle) { advance() }
+                .font(.title3.weight(.bold))
+                .padding(.vertical, 16)
+                .frame(maxWidth: .infinity, minHeight: 56)
+                .background(
+                    canContinue
+                        ? themeManager.colors.primaryButton
+                        : themeManager.colors.secondaryText.opacity(0.35)
+                )
+                .foregroundStyle(themeManager.colors.onPrimaryButton)
+                .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+                .disabled(!canContinue)
+                .accessibilityHint(Text(L10n.string("a11y.setup_next_hint", locale: locale)))
         }
     }
 
     private var nextTitle: String {
-        setupVM.step == .finish ? L10n.string("setup.finish.primary", locale: locale) : L10n.string("common.next", locale: locale)
+        setupVM.step == .finish
+            ? L10n.string("setup.finish.primary", locale: locale)
+            : L10n.string("common.next", locale: locale)
     }
 
     private var canContinue: Bool {
         switch setupVM.step {
-        case .permissions:
-            return true
-        case .pickContacts:
-            return !setupVM.selectedImports.isEmpty
+        case .permissions: return true
+        case .pickContacts: return !setupVM.selectedImports.isEmpty
         case .relationships:
-            return setupVM.drafts.allSatisfy { draft in
-                !CallService.sanitizePhone(draft.phoneNumber).isEmpty
+            return setupVM.drafts.allSatisfy {
+                !CallService.sanitizePhone($0.phoneNumber).isEmpty
             }
-        case .photos:
-            return true
-        case .theme, .language:
-            return true
-        case .finish:
-            return true
+        case .photos, .theme, .language, .finish: return true
         }
     }
 
     private func advance() {
         switch setupVM.step {
-        case .permissions:
-            break
-        case .pickContacts:
-            setupVM.rebuildDraftsFromSelection()
-            setupVM.advance()
-        case .relationships:
-            setupVM.advance()
-        case .photos:
-            setupVM.advance()
-        case .theme:
-            setupVM.advance()
-        case .language:
-            setupVM.advance()
-        case .finish:
-            finishSetup()
+        case .permissions: break
+        case .pickContacts: setupVM.rebuildDraftsFromSelection(); setupVM.advance()
+        case .relationships, .photos, .theme, .language: setupVM.advance()
+        case .finish: finishSetup()
         }
     }
 
     private func finishSetup() {
-        guard let prefs = preferences else { return }
         setupVM.loadError = nil
         do {
-            try setupVM.commitDrafts(context: modelContext, preferences: prefs, locale: locale)
-            themeManager.refreshFromStore()
+            try setupVM.commitDrafts(store: store, locale: locale)
         } catch {
             setupVM.loadError = L10n.string("error.save_failed", locale: locale)
         }
@@ -498,37 +485,16 @@ struct SetupFlowView: View {
         }
     }
 
-    private func handleNewContactSaved(_ contact: CNContact?) {
-        guard let contact else { return }
-        loadImports()
-        guard setupVM.loadError == nil else { return }
-        guard let imported = try? services.contacts.loadContact(identifier: contact.identifier, locale: locale) else {
-            newContactNotice = L10n.string("add.error.no_phone", locale: locale)
-            return
-        }
-        newContactNotice = nil
-        if setupVM.selectedImports.contains(imported.id) { return }
-        if setupVM.selectedImports.count >= setupPickCap {
-            setupPickLimitNotice = String(
-                format: L10n.string("setup.pick.max_reached", locale: locale),
-                locale: locale,
-                arguments: [Int64(setupPickCap)]
-            )
-            return
-        }
-        setupVM.selectedImports.insert(imported.id)
-        setupPickLimitNotice = nil
-    }
 }
 
-/// Isolated photo picker row so each draft can load `Data` asynchronously without fragile dictionary diffing.
+// MARK: - SetupPhotoRow
+
 private struct SetupPhotoRow: View {
     let draftId: UUID
     @ObservedObject var setupVM: SetupViewModel
     let colors: ThemeColors
 
     @Environment(\.locale) private var locale
-
     @State private var item: PhotosPickerItem?
 
     private var draft: SetupDraftContact? {
@@ -592,7 +558,9 @@ private struct SetupPhotoRow: View {
                             .foregroundStyle(colors.primaryButton)
                             .clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
                         }
-                        .accessibilityHint(Text(L10n.string("setup.photos.a11y_hint", locale: locale)))
+                        .accessibilityHint(
+                            Text(L10n.string("setup.photos.a11y_hint", locale: locale))
+                        )
 
                         if draft.photoData != nil {
                             Button(role: .destructive) {
@@ -630,6 +598,6 @@ private struct SetupPhotoRow: View {
     SetupFlowView()
         .environment(\.appServices, AppServices())
         .environmentObject(ThemeManager())
+        .environmentObject(AppStore.preview)
         .environment(\.locale, Locale(identifier: "en"))
-        .modelContainer(PreviewSampleData.container)
 }

@@ -2,18 +2,17 @@
 //  EditFavoriteView.swift
 //  EasyDial
 //
-//  Update an existing favorite’s name, phone, and photo.
+//  Update an existing favorite's name, phone, and photo.
 //
 
 import PhotosUI
-import SwiftData
 import SwiftUI
 
 struct EditFavoriteView: View {
     @Environment(\.dismiss) private var dismiss
-    @Environment(\.modelContext) private var modelContext
     @Environment(\.locale) private var locale
     @EnvironmentObject private var themeManager: ThemeManager
+    @EnvironmentObject private var store: AppStore
 
     let contact: FavoriteContact
 
@@ -69,6 +68,8 @@ struct EditFavoriteView: View {
                     Button(L10n.string("setup.photos.remove", locale: locale), role: .destructive) {
                         photoItem = nil
                         viewModel.photoData = nil
+                        viewModel.photoRemoved = true
+                        viewModel.photoChanged = false
                     }
                 }
             }
@@ -85,7 +86,7 @@ struct EditFavoriteView: View {
             }
         }
         .onAppear {
-            viewModel.reset(from: contact)
+            viewModel.reset(from: contact, photoStorage: store.photoStorage)
         }
         .onChange(of: photoItem) { _, newItem in
             Task {
@@ -93,6 +94,8 @@ struct EditFavoriteView: View {
                 if let data = try? await newItem.loadTransferable(type: Data.self) {
                     await MainActor.run {
                         viewModel.photoData = ImageDataOptimizer.thumbnailJPEG(from: data)
+                        viewModel.photoChanged = true
+                        viewModel.photoRemoved = false
                     }
                 }
             }
@@ -106,11 +109,21 @@ struct EditFavoriteView: View {
             validationError = message
             return
         }
-        contact.displayName = viewModel.displayName.trimmingCharacters(in: .whitespacesAndNewlines)
-        contact.phoneNumber = CallService.sanitizePhone(viewModel.phoneNumber)
-        contact.photoData = ImageDataOptimizer.thumbnailJPEG(from: viewModel.photoData)
+        var updated = contact
+        updated.displayName = viewModel.displayName.trimmingCharacters(in: .whitespacesAndNewlines)
+        updated.phoneNumber = CallService.sanitizePhone(viewModel.phoneNumber)
+
+        let photoUpdate: PhotoUpdate
+        if viewModel.photoRemoved {
+            photoUpdate = .remove
+        } else if viewModel.photoChanged, let data = viewModel.photoData {
+            photoUpdate = .set(data)
+        } else {
+            photoUpdate = .unchanged
+        }
+
         do {
-            try modelContext.saveOrThrow()
+            try store.updateFavorite(updated, photoUpdate: photoUpdate)
             dismiss()
         } catch {
             saveError = L10n.string("error.save_failed", locale: locale)

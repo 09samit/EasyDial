@@ -2,12 +2,11 @@
 //  SetupViewModel.swift
 //  EasyDial
 //
-//  First-run setup: permissions, favorites import, labels, theme, language.
+//  First-run setup: permissions, favorites import, labels, photos, theme, language.
 //
 
 import Combine
 import Foundation
-import SwiftData
 
 struct SetupDraftContact: Identifiable, Hashable {
     let id: UUID
@@ -28,9 +27,8 @@ final class SetupViewModel: ObservableObject {
         case language = 5
         case finish = 6
 
-        /// Stable visual progress dots (same order as navigation).
         static let ordered: [Step] = [
-            .permissions, .pickContacts, .relationships, .photos, .theme, .language, .finish
+            .permissions, .pickContacts, .relationships, .photos, .theme, .language, .finish,
         ]
     }
 
@@ -51,7 +49,6 @@ final class SetupViewModel: ObservableObject {
         step = prev
     }
 
-    /// Rebuilds drafts from the current selection while preserving edits for contacts still selected.
     func rebuildDraftsFromSelection() {
         let cap = AppConfiguration.shared.maxFavoriteContactsDuringSetup
         let ordered = importedContacts.filter { selectedImports.contains($0.id) }.prefix(cap)
@@ -62,25 +59,21 @@ final class SetupViewModel: ObservableObject {
             },
             uniquingKeysWith: { first, _ in first }
         )
-
         drafts = ordered.map { src in
             if let existing = preserved[src.id] {
                 var draft = existing
                 draft.displayName = src.displayName
-                if draft.photoData == nil {
-                    draft.photoData = src.thumbnailImageData
-                }
+                if draft.photoData == nil { draft.photoData = src.thumbnailImageData }
                 if CallService.sanitizePhone(draft.phoneNumber).isEmpty {
                     draft.phoneNumber = src.phoneNumbers.first ?? ""
                 }
                 return draft
             }
-            let phone = src.phoneNumbers.first ?? ""
             return SetupDraftContact(
                 id: UUID(),
                 cnContactIdentifier: src.id,
                 displayName: src.displayName,
-                phoneNumber: phone,
+                phoneNumber: src.phoneNumbers.first ?? "",
                 photoData: src.thumbnailImageData
             )
         }
@@ -97,21 +90,17 @@ final class SetupViewModel: ObservableObject {
         drafts[ix].phoneNumber = phone
     }
 
-    func commitDrafts(context: ModelContext, preferences: AppPreferences, locale: Locale) throws {
-        let sorted = drafts.enumerated().map { index, draft -> FavoriteContact in
-            FavoriteContact(
+    func commitDrafts(store: AppStore, locale: Locale) throws {
+        for (index, draft) in drafts.enumerated() {
+            let contact = FavoriteContact(
                 sortOrder: index,
                 displayName: draft.displayName,
                 relationshipLabel: FavoriteContact.hiddenRelationshipLabel,
                 phoneNumber: CallService.sanitizePhone(draft.phoneNumber),
-                photoData: ImageDataOptimizer.thumbnailJPEG(from: draft.photoData),
                 cnContactIdentifier: draft.cnContactIdentifier
             )
+            try store.insertFavorite(contact, photoData: draft.photoData)
         }
-        for contact in sorted {
-            context.insert(contact)
-        }
-        preferences.hasCompletedSetup = true
-        try context.saveOrThrow()
+        try store.updatePreferences { $0.hasCompletedSetup = true }
     }
 }

@@ -5,7 +5,6 @@
 //  App settings: accessibility, SOS, and favorites; edits are staged until Done.
 //
 
-import SwiftData
 import SwiftUI
 
 /// Routes sheet-level dismiss to staged-settings revert (not fired on in-settings navigation push).
@@ -34,7 +33,7 @@ private struct SettingsRevertRegistration: View {
     }
 }
 
-/// Staged settings; applied to SwiftData only when the user taps Done.
+/// Staged settings; applied to the store only when the user taps Done.
 private struct SettingsDraft: Equatable {
     var themeRaw: String
     var preferredLanguageCode: String
@@ -52,16 +51,15 @@ private struct SettingsDraft: Equatable {
         emergencyPhoneNumber = preferences.emergencyPhoneNumber
     }
 
-    func write(to preferences: AppPreferences) {
-        preferences.themeRaw = themeRaw
-        preferences.preferredLanguageCode = preferredLanguageCode
-        preferences.dynamicTypeSizeRaw = dynamicTypeSizeRaw
-        preferences.voicePromptsEnabled = voicePromptsEnabled
-        preferences.sosEnabled = sosEnabled
-        preferences.emergencyPhoneNumber = emergencyPhoneNumber
+    func write(to prefs: inout AppPreferences) {
+        prefs.themeRaw = themeRaw
+        prefs.preferredLanguageCode = preferredLanguageCode
+        prefs.dynamicTypeSizeRaw = dynamicTypeSizeRaw
+        prefs.voicePromptsEnabled = voicePromptsEnabled
+        prefs.sosEnabled = sosEnabled
+        prefs.emergencyPhoneNumber = emergencyPhoneNumber
     }
 
-    /// Normalizes emergency number and validates SOS configuration before persisting.
     func validatedForSave(locale: Locale) -> (draft: SettingsDraft, error: String?) {
         var copy = self
         copy.emergencyPhoneNumber = CallService.sanitizePhone(emergencyPhoneNumber)
@@ -80,32 +78,29 @@ struct SettingsView: View {
     var sheetCoordinator: SettingsSheetCoordinator?
 
     @Environment(\.dismiss) private var dismiss
-    @Environment(\.modelContext) private var modelContext
     @Environment(\.locale) private var locale
     @EnvironmentObject private var themeManager: ThemeManager
-
-    @Query(sort: \AppPreferences.id) private var preferencesQuery: [AppPreferences]
+    @EnvironmentObject private var store: AppStore
 
     @State private var draft: SettingsDraft?
     @State private var snapshot: SettingsDraft?
     @State private var committed = false
-    /// Dedicated picker state — `List` pickers do not reliably refresh when only `SettingsDraft` changes.
     @State private var selectedTheme: AppTheme = .light
     @State private var selectedLanguage: AppLanguage = .english
     @State private var commitValidationMessage: String?
     @State private var showResetSetupConfirm = false
     @State private var resetSetupError: String?
 
-    private var preferences: AppPreferences? { preferencesQuery.first }
+    private var preferences: AppPreferences? { store.preferences }
+
+    private var previewLocale: Locale {
+        Locale(identifier: draft?.preferredLanguageCode ?? preferences?.preferredLanguageCode ?? "en")
+    }
 
     private var layoutDirectionForPreview: LayoutDirection {
         Locale.Language(identifier: previewLocale.identifier).characterDirection == .rightToLeft
             ? .rightToLeft
             : .leftToRight
-    }
-
-    private var previewLocale: Locale {
-        Locale(identifier: draft?.preferredLanguageCode ?? preferences?.preferredLanguageCode ?? "en")
     }
 
     var body: some View {
@@ -175,7 +170,6 @@ struct SettingsView: View {
         selectedLanguage = AppLanguage.resolved(from: draft.preferredLanguageCode)
     }
 
-    /// Assigns a new `SettingsDraft` value so `@State` publishes changes (in-place struct mutation does not).
     private func mutateDraft(_ draftBinding: Binding<SettingsDraft>, _ mutate: (inout SettingsDraft) -> Void) {
         var updated = draftBinding.wrappedValue
         mutate(&updated)
@@ -183,30 +177,24 @@ struct SettingsView: View {
     }
 
     private func revertIfNeeded() {
-        guard !committed, let prefs = preferences, let snap = snapshot else { return }
-        snap.write(to: prefs)
+        guard !committed, let snap = snapshot else { return }
+        try? store.updatePreferences { snap.write(to: &$0) }
         draft = snap
         syncPickerState(from: snap)
-        try? modelContext.saveOrThrow()
-        themeManager.refreshFromStore()
+        themeManager.apply(theme: AppTheme(rawValue: snap.themeRaw) ?? .light)
     }
 
     private func commitAndDismiss() {
-        guard let prefs = preferences, let d = draft else {
-            dismiss()
-            return
-        }
+        guard let d = draft else { dismiss(); return }
         let validated = d.validatedForSave(locale: previewLocale)
         if let error = validated.error {
             commitValidationMessage = error
             return
         }
         committed = true
-        validated.draft.write(to: prefs)
-        themeManager.apply(theme: prefs.theme)
         do {
-            try modelContext.saveOrThrow()
-            themeManager.refreshFromStore()
+            try store.updatePreferences { validated.draft.write(to: &$0) }
+            themeManager.apply(theme: AppTheme(rawValue: validated.draft.themeRaw) ?? .light)
             dismiss()
         } catch {
             committed = false
@@ -215,17 +203,9 @@ struct SettingsView: View {
     }
 
     private func performResetSetup() {
-        guard let prefs = preferences else { return }
         resetSetupError = nil
         do {
-            let descriptor = FetchDescriptor<FavoriteContact>()
-            let allFavorites = try modelContext.fetch(descriptor)
-            for contact in allFavorites {
-                modelContext.delete(contact)
-            }
-            prefs.hasCompletedSetup = false
-            prefs.emergencyPhoneNumber = ""
-            try modelContext.saveOrThrow()
+            try store.resetApp()
             committed = true
             dismiss()
         } catch {
@@ -372,14 +352,15 @@ struct SettingsView: View {
         .toolbarBackground(.visible, for: .navigationBar)
     }
 
-    /// Discrete steps: `0` = match system; `1...n` map to `dynamicTypeChoices` indices.
     private func textSizeSliderBinding(_ draftBinding: Binding<SettingsDraft>) -> Binding<Double> {
         let maxIndex = Double(SettingsViewModel.dynamicTypeChoices.count)
         return Binding(
             get: {
                 if draftBinding.wrappedValue.dynamicTypeSizeRaw == nil { return 0 }
-                guard let size = SettingsViewModel.resolvedDynamicType(storedRaw: draftBinding.wrappedValue.dynamicTypeSizeRaw),
-                      let idx = SettingsViewModel.dynamicTypeChoices.firstIndex(of: size)
+                guard let size = SettingsViewModel.resolvedDynamicType(
+                    storedRaw: draftBinding.wrappedValue.dynamicTypeSizeRaw
+                ),
+                let idx = SettingsViewModel.dynamicTypeChoices.firstIndex(of: size)
                 else { return 0 }
                 return Double(idx + 1)
             },
@@ -389,8 +370,7 @@ struct SettingsView: View {
                     if i == 0 {
                         draft.dynamicTypeSizeRaw = nil
                     } else {
-                        let choiceIndex = i - 1
-                        let size = SettingsViewModel.dynamicTypeChoices[choiceIndex]
+                        let size = SettingsViewModel.dynamicTypeChoices[i - 1]
                         draft.dynamicTypeSizeRaw = String(describing: size)
                     }
                 }
@@ -423,11 +403,7 @@ struct SettingsView: View {
                     .font(.caption.weight(.bold))
                     .foregroundStyle(themeManager.colors.secondaryText)
                     .accessibilityHidden(true)
-                Slider(
-                    value: textSizeSliderBinding(draftBinding),
-                    in: 0...maxIndex,
-                    step: 1
-                ) {
+                Slider(value: textSizeSliderBinding(draftBinding), in: 0...maxIndex, step: 1) {
                     Text(L10n.string("settings.text_size", locale: previewLocale))
                 }
                 .tint(themeManager.colors.primaryButton)
@@ -449,6 +425,6 @@ struct SettingsView: View {
     SettingsView()
         .environment(\.appServices, AppServices())
         .environmentObject(ThemeManager())
+        .environmentObject(AppStore.preview)
         .environment(\.locale, Locale(identifier: "en"))
-        .modelContainer(PreviewSampleData.container)
 }

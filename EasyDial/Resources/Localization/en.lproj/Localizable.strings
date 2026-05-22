@@ -89,7 +89,7 @@
 /* Setup */
 "setup.nav_title" = "Setup";
 "setup.permissions.title" = "Allow contacts";
-"setup.permissions.body" = "EasyDial needs Contacts permission so you can pick trusted people to show as large calling buttons.";
+"setup.permissions.body" = "CallNest needs Contacts permission so you can pick trusted people to show as large calling buttons.";
 "setup.permissions.cta" = "Allow contacts access";
 "setup.permissions.cta_hint" = "Shows the system permission dialog";
 "setup.permissions.denied" = "Contacts access is required to pick favorite people. Allow access in Settings, then return here.";
@@ -97,6 +97,7 @@
 "setup.pick.title" = "Choose favorites";
 "setup.pick.body" = "Tap names to include them. You can choose up to %lld for setup.";
 "setup.pick.max_reached" = "You can select at most %lld favorites in setup.";
+"setup.pick.no_results" = "No contacts found.";
 "setup.pick.row_hint" = "Toggles this person";
 "setup.relationships.title" = "Names and numbers";
 "setup.relationships.body" = "Add a relationship label and confirm each phone number.";
@@ -151,5 +152,5 @@
 "validation.emergency_phone_invalid" = "That emergency number does not look valid.";
 
 "recovery.title" = "Unable to open saved data";
-"recovery.body" = "EasyDial could not load your contacts and settings. You can reset local data and start setup again.";
+"recovery.body" = "CallNest could not load your contacts and settings. You can reset local data and start setup again.";
 "recovery.reset" = "Reset local data";

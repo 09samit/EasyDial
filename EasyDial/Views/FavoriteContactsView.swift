@@ -3,39 +3,29 @@
 //  EasyDial
 //
 //  Add favorites from Contacts, reorder, edit, and remove.
-//  Requires iOS 17+ (see project `IPHONEOS_DEPLOYMENT_TARGET`).
 //
 
-import SwiftData
 import SwiftUI
 import UIKit
 
-@available(iOS 17, *)
 struct FavoriteContactsView: View {
-    @Environment(\.modelContext) private var modelContext
     @Environment(\.appServices) private var services
     @Environment(\.locale) private var locale
     @EnvironmentObject private var themeManager: ThemeManager
-
-    @Query(sort: \FavoriteContact.sortOrder) private var favorites: [FavoriteContact]
+    @EnvironmentObject private var store: AppStore
 
     @State private var showContactPicker = false
     @State private var saveError: String?
     @State private var importNotice: String?
 
+    private var favorites: [FavoriteContact] { store.favorites }
     private var favoriteLimit: Int { AppConfiguration.shared.maxTotalFavoriteContacts }
     private var importValidator: FavoriteImportValidator {
         FavoriteImportValidator(favorites: favorites, limit: favoriteLimit)
     }
     private var isAtFavoriteLimit: Bool { !importValidator.canAdd }
-
-    private var excludedContactIdentifiers: Set<String> {
-        importValidator.excludedContactIDs
-    }
-
-    private var excludedSanitizedPhones: Set<String> {
-        importValidator.excludedPhones
-    }
+    private var excludedContactIdentifiers: Set<String> { importValidator.excludedContactIDs }
+    private var excludedSanitizedPhones: Set<String> { importValidator.excludedPhones }
 
     var body: some View {
         List {
@@ -73,8 +63,8 @@ struct FavoriteContactsView: View {
             } footer: {
                 if isAtFavoriteLimit {
                     Text(L10n.string("favorites.add.disabled_hint", locale: locale))
-                    .font(.body.weight(.semibold))
-                    .foregroundStyle(themeManager.colors.emergency)
+                        .font(.body.weight(.semibold))
+                        .foregroundStyle(themeManager.colors.emergency)
                 } else {
                     Text(L10n.string("settings.reorder.help", locale: locale))
                         .font(.body)
@@ -113,23 +103,22 @@ struct FavoriteContactsView: View {
                 )
             }
         }
-        .sheet(isPresented: $showContactPicker) {
-            ContactPicker(
-                excludedContactIdentifiers: excludedContactIdentifiers,
-                excludedSanitizedPhones: excludedSanitizedPhones,
-                onCancel: { showContactPicker = false },
-                onDuplicate: {
-                    showContactPicker = false
-                    let message = L10n.string("add.error.duplicate", locale: locale)
-                    importNotice = message
-                    UIAccessibility.post(notification: .announcement, argument: message)
-                },
-                onPick: { selection in
-                    showContactPicker = false
-                    handleContactPicked(selection)
-                }
-            )
-        }
+        .contactPicker(
+            isPresented: $showContactPicker,
+            excludedContactIdentifiers: excludedContactIdentifiers,
+            excludedSanitizedPhones: excludedSanitizedPhones,
+            onCancel: { showContactPicker = false },
+            onDuplicate: {
+                showContactPicker = false
+                let message = L10n.string("add.error.duplicate", locale: locale)
+                importNotice = message
+                UIAccessibility.post(notification: .announcement, argument: message)
+            },
+            onPick: { selection in
+                showContactPicker = false
+                handleContactPicked(selection)
+            }
+        )
     }
 
     @ViewBuilder
@@ -148,7 +137,6 @@ struct FavoriteContactsView: View {
     private func beginAddFromContacts() async {
         importNotice = nil
         guard importValidator.canAdd else { return }
-
         if !services.permissions.canReadContacts() {
             let granted = await services.permissions.requestContactsAccess()
             guard granted else {
@@ -158,10 +146,7 @@ struct FavoriteContactsView: View {
                 return
             }
         }
-
-        await MainActor.run {
-            showContactPicker = true
-        }
+        await MainActor.run { showContactPicker = true }
     }
 
     @MainActor
@@ -172,7 +157,7 @@ struct FavoriteContactsView: View {
             limit: favoriteLimit,
             contacts: services.contacts,
             locale: locale,
-            modelContext: modelContext
+            store: store
         ) {
             importNotice = issue.localizedMessage(locale: locale, favoriteLimit: favoriteLimit)
             if issue == .duplicateContact || issue == .duplicatePhone {
@@ -184,35 +169,21 @@ struct FavoriteContactsView: View {
     }
 
     private func move(from source: IndexSet, to destination: Int) {
-        var ordered = favorites
-        ordered.move(fromOffsets: source, toOffset: destination)
-        for (index, contact) in ordered.enumerated() {
-            contact.sortOrder = index
+        do {
+            try store.moveFavorites(from: source, to: destination)
+            saveError = nil
+        } catch {
+            saveError = L10n.string("error.save_failed", locale: locale)
         }
-        persistOrShowError()
     }
 
     private func delete(at offsets: IndexSet) {
         let snapshot = favorites
-        for index in offsets {
-            guard snapshot.indices.contains(index) else { continue }
-            modelContext.delete(snapshot[index])
-        }
-        persistOrShowError()
-        renumberSortOrders()
-    }
-
-    private func renumberSortOrders() {
-        let ordered = favorites.sorted { $0.sortOrder < $1.sortOrder }
-        for (index, contact) in ordered.enumerated() {
-            contact.sortOrder = index
-        }
-        persistOrShowError()
-    }
-
-    private func persistOrShowError() {
         do {
-            try modelContext.saveOrThrow()
+            for index in offsets {
+                guard snapshot.indices.contains(index) else { continue }
+                try store.deleteFavorite(id: snapshot[index].id)
+            }
             saveError = nil
         } catch {
             saveError = L10n.string("error.save_failed", locale: locale)
@@ -220,13 +191,12 @@ struct FavoriteContactsView: View {
     }
 }
 
-@available(iOS 17, *)
 #Preview {
     NavigationStack {
         FavoriteContactsView()
     }
     .environment(\.appServices, AppServices())
     .environmentObject(ThemeManager())
+    .environmentObject(AppStore.preview)
     .environment(\.locale, Locale(identifier: "en"))
-    .modelContainer(PreviewSampleData.container)
 }

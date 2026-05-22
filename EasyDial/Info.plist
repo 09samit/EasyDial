@@ -54,8 +54,6 @@
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
 	<key>NSContactsUsageDescription</key>
-	<string>EasyDial needs access to your contacts so you can add favorite people to call with one tap.</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>EasyDial lets you choose clear photos for favorite contacts.</string>
+	<string>CallNest needs access to your contacts so you can add favorite people to call with one tap.</string>
 </dict>
 </plist>

@@ -83,7 +83,7 @@
 
 "setup.nav_title" = "الإعداد";
 "setup.permissions.title" = "السماح بجهات الاتصال";
-"setup.permissions.body" = "يحتاج EasyDial إلى إذن جهات الاتصال لاختيار الأشخاص الموثوقين كأزرار اتصال كبيرة.";
+"setup.permissions.body" = "يحتاج CallNest إلى إذن جهات الاتصال لاختيار الأشخاص الموثوقين كأزرار اتصال كبيرة.";
 "setup.permissions.cta" = "السماح بالوصول لجهات الاتصال";
 "setup.permissions.cta_hint" = "يعرض نافذة النظام للأذونات";
 "setup.permissions.denied" = "مطلوب الوصول إلى جهات الاتصال. اسمح بالوصول من الإعدادات ثم عد هنا.";
@@ -91,6 +91,7 @@
 "setup.pick.title" = "اختر المفضلة";
 "setup.pick.body" = "اضغط على الأسماء لتضمينها. يمكنك اختيار ما يصل إلى %lld في الإعداد.";
 "setup.pick.max_reached" = "يمكنك اختيار %lld مفضلين كحد أقصى في الإعداد.";
+"setup.pick.no_results" = "لم يُعثر على جهات اتصال.";
 "setup.pick.row_hint" = "تبديل هذا الشخص";
 "setup.relationships.title" = "الأسماء والأرقام";
 "setup.relationships.body" = "أضف تسمية علاقة وتأكد من كل رقم هاتف.";
@@ -137,5 +138,5 @@
 "validation.emergency_phone_required" = "أدخل رقم طوارئ صالحاً، أو أوقف SOS.";
 "validation.emergency_phone_invalid" = "رقم الطوارئ غير صالح.";
 "recovery.title" = "تعذّر فتح البيانات المحفوظة";
-"recovery.body" = "تعذّر على EasyDial تحميل جهات الاتصال والإعدادات. يمكنك إعادة تعيين البيانات المحلية والبدء من جديد.";
+"recovery.body" = "تعذّر على CallNest تحميل جهات الاتصال والإعدادات. يمكنك إعادة تعيين البيانات المحلية والبدء من جديد.";
 "recovery.reset" = "إعادة تعيين البيانات المحلية";

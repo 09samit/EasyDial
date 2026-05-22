@@ -2,12 +2,11 @@
 //  FavoriteContactImporter.swift
 //  EasyDial
 //
-//  Imports a system contact into SwiftData favorites.
+//  Imports a system contact into the favorites store.
 //
 
 import Contacts
 import Foundation
-import SwiftData
 
 enum FavoriteContactImporter {
     @MainActor
@@ -17,7 +16,7 @@ enum FavoriteContactImporter {
         limit: Int,
         contacts: ContactService,
         locale: Locale,
-        modelContext: ModelContext
+        store: AppStore
     ) -> FavoriteImportIssue? {
         let validator = FavoriteImportValidator(favorites: favorites, limit: limit)
         guard validator.canAdd else { return .atFavoriteLimit }
@@ -26,11 +25,9 @@ enum FavoriteContactImporter {
         let preselectedPhone: String?
         switch selection {
         case .contact(let contact):
-            pickerContact = contact
-            preselectedPhone = nil
+            pickerContact = contact; preselectedPhone = nil
         case .phone(let contact, let number):
-            pickerContact = contact
-            preselectedPhone = number
+            pickerContact = contact; preselectedPhone = number
         }
 
         guard let imported = contacts.resolveImport(
@@ -53,15 +50,12 @@ enum FavoriteContactImporter {
             displayName: imported.displayName,
             relationshipLabel: FavoriteContact.hiddenRelationshipLabel,
             phoneNumber: sanitized,
-            photoData: ImageDataOptimizer.thumbnailJPEG(from: imported.thumbnailImageData),
             cnContactIdentifier: imported.id
         )
-        modelContext.insert(favorite)
         do {
-            try modelContext.saveOrThrow()
+            try store.insertFavorite(favorite, photoData: imported.thumbnailImageData)
             return nil
         } catch {
-            modelContext.delete(favorite)
             return .saveFailed
         }
     }

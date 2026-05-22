@@ -8,18 +8,25 @@
 
 /* Begin PBXBuildFile section */
 		020B508D6F354F0B8765C975 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DFBE61B84E5A4994B9EEE31D /* Localizable.strings */; };
+		02E2F4ACEB9AD6C68CAB36D7 /* FavoriteImportValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6385F9CC9F30F7C4BEAF78F0 /* FavoriteImportValidatorTests.swift */; };
 		0536B789380C40AFBF1728B5 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C02A31CBD34257945CA751 /* RootView.swift */; };
 		09A5BDE409E440D183714430 /* AccessibilityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D779D7CB1F4460B89F3A841 /* AccessibilityService.swift */; };
 		0A7CBCFB92A44D1A93887D71 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DAED56828CA4C8D987AF14F /* SettingsView.swift */; };
 		0BBFBAC869DC4F2EAE915B97 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9437666731D143EAB254B7F8 /* Localizable.strings */; };
+		0E3BDC4A4AA1B88087B65B92 /* SetupViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010C35C0E703E91D58E84C11 /* SetupViewModelTests.swift */; };
 		15211175EAE64B75830CFE59 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC783010167A4921865919DD /* HomeView.swift */; };
 		15F77B1197CA47579F60EC17 /* ContactViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F8A225F51B449E827BBB39 /* ContactViewModel.swift */; };
+		1A01413EB647591F4E49A146 /* FavoriteContactTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827A0036FD72CAFE27B74E40 /* FavoriteContactTests.swift */; };
 		1BA5EF486EAA40C5B0D1E44C /* Contacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D6076F130E3417F92B69917 /* Contacts.framework */; };
 		1DFDF81A7F80401C81A23D02 /* AppLanguage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB06308F723D4268AC340F5B /* AppLanguage.swift */; };
 		211548DD32E94415A5EEAB01 /* AppPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B429D0E92049F5BECB257B /* AppPreferences.swift */; };
 		23BFB92F611F4D1C806A6C28 /* SpeechService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD769E99A5242E8905ACC9A /* SpeechService.swift */; };
+		27C04BD4420C3934D58B4BBC /* CallServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC12A66221444FD43FB3196 /* CallServiceTests.swift */; };
+		29D105FD23FC16AF34DD01DD /* ContactViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1357274E1F12F54F735FC9E8 /* ContactViewModelTests.swift */; };
 		2B2E6039F21848E593ACF181 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6E57D3D2009542C585DFBFEA /* Localizable.strings */; };
 		2B34808912DB476E90149943 /* ContactCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0539CF6C866F452A894D6CC9 /* ContactCardView.swift */; };
+		3203961362C18984834C6928 /* InMemoryRepositoriesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3E162C4553E8057C5B279C /* InMemoryRepositoriesTests.swift */; };
+		33B7D87B5634406E668736E6 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55AE579859C888C405C08153 /* XCTest.framework */; };
 		344D227CFD904F3FBBFCEF7A /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD9CE2E853D7459A8B56045C /* SettingsViewModel.swift */; };
 		3657B679B57E455696A18CED /* EmergencySettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2558DC96FF2A4EDA8C26CD2F /* EmergencySettings.swift */; };
 		3A0512EC4E3444DC98D83D10 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 99D392F7D42945B9A10CE69D /* Assets.xcassets */; };
@@ -29,20 +36,29 @@
 		507DB60F3DE24B9AABDE3409 /* AppServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC37BC475BBD4885A89377EB /* AppServices.swift */; };
 		5B07A7CFAFE9444FA287374D /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12EB1E9A87D486688CE1DB7 /* ThemeManager.swift */; };
 		600A503C651F4141860212B0 /* EasyDialApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B4551B218649209157AC6E /* EasyDialApp.swift */; };
+		617F74957D45E42D23D0B3FA /* EmergencySettingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74D9CE812A238B0BF27806F /* EmergencySettingsTests.swift */; };
+		68908CD706D0A355E0B7EA1E /* AppStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80A78BCBAC9808487E050C7 /* AppStoreTests.swift */; };
+		720C22EA3C8B061C85AAE87C /* ImportedContactTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB65A04944B4BC9D864579B0 /* ImportedContactTests.swift */; };
+		75D2DE6847C62B50D326546E /* DynamicTypeStorageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBD16C195566217A2F4B101 /* DynamicTypeStorageTests.swift */; };
 		762DD2AB978E4F909DAB68C5 /* SetupFlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 692160540C2A4A6ABA5978FE /* SetupFlowView.swift */; };
+		8C8332AA6DA78571B7976A84 /* AppLanguageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D2D75260B70A1767E1EBE34 /* AppLanguageTests.swift */; };
+		8F278E3EF664C53BB0F8A72D /* AppPreferencesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10D080137060E1181E28FFC /* AppPreferencesTests.swift */; };
 		9F36ED9383444B4B82BA0F75 /* PermissionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6866A50330304A5797C38F7E /* PermissionManager.swift */; };
 		A1B2C3D4E5F60718293A4B5C9 /* ThemedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F60718293A4B5C8 /* ThemedTextField.swift */; };
 		A50AD0F8E4D849689D7E2965 /* ContactService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C877F7B77ED47ADBDDDFF64 /* ContactService.swift */; };
 		A9258FAC65554B6F9F9D8097 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 765E2367B8CA46F0AAF49443 /* AVFoundation.framework */; };
 		A93009BC673E4D9ABC64EAB9 /* EmergencySOSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5824F949839648399662B5D6 /* EmergencySOSView.swift */; };
+		AA0000000000000000000101 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000001 /* PersistenceController.swift */; };
+		AA0000000000000000000102 /* Repositories.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000002 /* Repositories.swift */; };
+		AA0000000000000000000107 /* ContactPhotoStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000007 /* ContactPhotoStorage.swift */; };
+		AA0000000000000000000108 /* AppStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000008 /* AppStore.swift */; };
 		B2C3D4E5F60718293A4B5C6D /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = B2C3D4E5F60718293A4B5C6E /* PrivacyInfo.xcprivacy */; };
-		B5C6D7E8F901234567890A01 /* ModelContextSave.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C6D7E8F901234567890A11 /* ModelContextSave.swift */; };
 		B5C6D7E8F901234567890A02 /* ImageDataOptimizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C6D7E8F901234567890A12 /* ImageDataOptimizer.swift */; };
 		B5C6D7E8F901234567890A03 /* DynamicTypeStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C6D7E8F901234567890A13 /* DynamicTypeStorage.swift */; };
-		B5C6D7E8F901234567890A04 /* ModelContainerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C6D7E8F901234567890A14 /* ModelContainerFactory.swift */; };
 		B5C6D7E8F901234567890A06 /* DataRecoveryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C6D7E8F901234567890A16 /* DataRecoveryView.swift */; };
 		B5C6D7E8F901234567890A07 /* EditFavoriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C6D7E8F901234567890A17 /* EditFavoriteView.swift */; };
 		BA10B25A20C94E51B4C470F5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8D5F5743D2F14796BBD3C25A /* Localizable.strings */; };
+		BCEE11E1B490FF7950AA0B9B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFDCCBA8DF8EDD43160DEE6A /* Foundation.framework */; };
 		BE9033D21B2B4F00B92F2860 /* SetupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE263BBBFF1649ED9CB45FBF /* SetupViewModel.swift */; };
 		C0FFEE01000040008000ABCD3 /* AppConfiguration.plist in Resources */ = {isa = PBXBuildFile; fileRef = C0FFEE01000040008000ABCD1 /* AppConfiguration.plist */; };
 		C0FFEE01000040008000ABCD4 /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FFEE01000040008000ABCD2 /* AppConfiguration.swift */; };
@@ -54,46 +70,72 @@
 		D9E0F1A2B3C4D5E6F7081920 /* FavoriteImportValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E0F1A2B3C4D5E6F7081910 /* FavoriteImportValidator.swift */; };
 		D9E0F1A2B3C4D5E6F7081921 /* FavoriteContactImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E0F1A2B3C4D5E6F7081911 /* FavoriteContactImporter.swift */; };
 		E1D2C3B4A5968778695A4B3C2D1E0F02 /* FavoriteContactsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D2C3B4A5968778695A4B3C2D1E0F01 /* FavoriteContactsView.swift */; };
+		E6BB5A073AB704FAD2AEFDEA /* InMemoryContactPhotoStorageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38DA27D584CD7A92B6957DE /* InMemoryContactPhotoStorageTests.swift */; };
 		F1E2D3C4B5A69786958473625140393 /* L10n.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E2D3C4B5A69786958473625140392 /* L10n.swift */; };
 		F22B4C44E2154CC48AD67F9E /* FavoriteContact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E3C9DC19344136990397AF /* FavoriteContact.swift */; };
 		F23EAE12644749EBB4900F55 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1894DB153944FD9AC1B48F /* HomeViewModel.swift */; };
 		F7A8E9D0C1B2A39485746353 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7A8E9D0C1B2A39485746352 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		A1B6AC3D021496031CA67472 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4B1B7C17547747D9B44170A7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C47ABD575E084C5DAB4031B1;
+			remoteInfo = EasyDial;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		010C35C0E703E91D58E84C11 /* SetupViewModelTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SetupViewModelTests.swift; sourceTree = "<group>"; };
 		0539CF6C866F452A894D6CC9 /* ContactCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCardView.swift; sourceTree = "<group>"; };
 		06B429D0E92049F5BECB257B /* AppPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPreferences.swift; sourceTree = "<group>"; };
 		0D779D7CB1F4460B89F3A841 /* AccessibilityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibilityService.swift; sourceTree = "<group>"; };
+		1357274E1F12F54F735FC9E8 /* ContactViewModelTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ContactViewModelTests.swift; sourceTree = "<group>"; };
 		13D0D81D4A8B48E8877C2D15 /* ThemeColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeColors.swift; sourceTree = "<group>"; };
+		1D2D75260B70A1767E1EBE34 /* AppLanguageTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AppLanguageTests.swift; sourceTree = "<group>"; };
 		2558DC96FF2A4EDA8C26CD2F /* EmergencySettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmergencySettings.swift; sourceTree = "<group>"; };
+		28E44DB82FC05B2500E934BF /* EasyDial.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = EasyDial.entitlements; sourceTree = "<group>"; };
 		2C877F7B77ED47ADBDDDFF64 /* ContactService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactService.swift; sourceTree = "<group>"; };
 		2D6076F130E3417F92B69917 /* Contacts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Contacts.framework; path = System/Library/Frameworks/Contacts.framework; sourceTree = SDKROOT; };
 		2DAED56828CA4C8D987AF14F /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		343EFB66C27B4314BAD810C3 /* PreviewSampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewSampleData.swift; sourceTree = "<group>"; };
 		350F29FB0B594A4D9D2A785B /* AddContactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactView.swift; sourceTree = "<group>"; };
+		3BBD16C195566217A2F4B101 /* DynamicTypeStorageTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DynamicTypeStorageTests.swift; sourceTree = "<group>"; };
 		3BD769E99A5242E8905ACC9A /* SpeechService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechService.swift; sourceTree = "<group>"; };
+		55AE579859C888C405C08153 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = XCTest.framework; sourceTree = SDKROOT; };
 		5824F949839648399662B5D6 /* EmergencySOSView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmergencySOSView.swift; sourceTree = "<group>"; };
+		6385F9CC9F30F7C4BEAF78F0 /* FavoriteImportValidatorTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FavoriteImportValidatorTests.swift; sourceTree = "<group>"; };
 		64B4551B218649209157AC6E /* EasyDialApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EasyDialApp.swift; sourceTree = "<group>"; };
 		6866A50330304A5797C38F7E /* PermissionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionManager.swift; sourceTree = "<group>"; };
 		692160540C2A4A6ABA5978FE /* SetupFlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupFlowView.swift; sourceTree = "<group>"; };
 		6E57D3D2009542C585DFBFEA /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		706A65157D9A4A849CD9DB42 /* HapticService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticService.swift; sourceTree = "<group>"; };
 		765E2367B8CA46F0AAF49443 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		7979B7C96A5B5A30D8F6EAEC /* EasyDialTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EasyDialTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		80421B31BDB741D8B0CA431E /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
+		827A0036FD72CAFE27B74E40 /* FavoriteContactTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FavoriteContactTests.swift; sourceTree = "<group>"; };
+		8CC12A66221444FD43FB3196 /* CallServiceTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CallServiceTests.swift; sourceTree = "<group>"; };
 		8D5F5743D2F14796BBD3C25A /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = hi.lproj/Localizable.strings; sourceTree = "<group>"; };
 		9437666731D143EAB254B7F8 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
 		94E3C9DC19344136990397AF /* FavoriteContact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteContact.swift; sourceTree = "<group>"; };
 		99D392F7D42945B9A10CE69D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A1B2C3D4E5F60718293A4B5C8 /* ThemedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemedTextField.swift; sourceTree = "<group>"; };
+		A38DA27D584CD7A92B6957DE /* InMemoryContactPhotoStorageTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = InMemoryContactPhotoStorageTests.swift; sourceTree = "<group>"; };
 		A5C02A31CBD34257945CA751 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		A5D1E9B1279C46CE9F48657E /* EasyDial.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EasyDial.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A74D9CE812A238B0BF27806F /* EmergencySettingsTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EmergencySettingsTests.swift; sourceTree = "<group>"; };
+		A80A78BCBAC9808487E050C7 /* AppStoreTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AppStoreTests.swift; sourceTree = "<group>"; };
+		AA0000000000000000000001 /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
+		AA0000000000000000000002 /* Repositories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repositories.swift; sourceTree = "<group>"; };
+		AA0000000000000000000007 /* ContactPhotoStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactPhotoStorage.swift; sourceTree = "<group>"; };
+		AA0000000000000000000008 /* AppStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStore.swift; sourceTree = "<group>"; };
 		AB06308F723D4268AC340F5B /* AppLanguage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLanguage.swift; sourceTree = "<group>"; };
 		AE263BBBFF1649ED9CB45FBF /* SetupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupViewModel.swift; sourceTree = "<group>"; };
 		B2C3D4E5F60718293A4B5C6E /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
-		B5C6D7E8F901234567890A11 /* ModelContextSave.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelContextSave.swift; sourceTree = "<group>"; };
 		B5C6D7E8F901234567890A12 /* ImageDataOptimizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDataOptimizer.swift; sourceTree = "<group>"; };
 		B5C6D7E8F901234567890A13 /* DynamicTypeStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicTypeStorage.swift; sourceTree = "<group>"; };
-		B5C6D7E8F901234567890A14 /* ModelContainerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelContainerFactory.swift; sourceTree = "<group>"; };
 		B5C6D7E8F901234567890A16 /* DataRecoveryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataRecoveryView.swift; sourceTree = "<group>"; };
 		B5C6D7E8F901234567890A17 /* EditFavoriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditFavoriteView.swift; sourceTree = "<group>"; };
 		C0FFEE01000040008000ABCD1 /* AppConfiguration.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = AppConfiguration.plist; sourceTree = "<group>"; };
@@ -102,6 +144,8 @@
 		C4F8A225F51B449E827BBB39 /* ContactViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactViewModel.swift; sourceTree = "<group>"; };
 		C7D8E9F0A1B2C3D4E5F60718 /* NewContactComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewContactComposer.swift; sourceTree = "<group>"; };
 		C8D9E0F1A2B3C4D5E6F70818 /* ContactPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactPicker.swift; sourceTree = "<group>"; };
+		CA3E162C4553E8057C5B279C /* InMemoryRepositoriesTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = InMemoryRepositoriesTests.swift; sourceTree = "<group>"; };
+		CB65A04944B4BC9D864579B0 /* ImportedContactTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ImportedContactTests.swift; sourceTree = "<group>"; };
 		D36E75B8A0D74EFB877F2662 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D9E0F1A2B3C4D5E6F7081910 /* FavoriteImportValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteImportValidator.swift; sourceTree = "<group>"; };
 		D9E0F1A2B3C4D5E6F7081911 /* FavoriteContactImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteContactImporter.swift; sourceTree = "<group>"; };
@@ -110,6 +154,8 @@
 		E1D2C3B4A5968778695A4B3C2D1E0F01 /* FavoriteContactsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteContactsView.swift; sourceTree = "<group>"; };
 		EC37BC475BBD4885A89377EB /* AppServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppServices.swift; sourceTree = "<group>"; };
 		EE1894DB153944FD9AC1B48F /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		EFDCCBA8DF8EDD43160DEE6A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		F10D080137060E1181E28FFC /* AppPreferencesTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AppPreferencesTests.swift; sourceTree = "<group>"; };
 		F1E2D3C4B5A69786958473625140392 /* L10n.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = L10n.swift; sourceTree = "<group>"; };
 		F7288C23BFB1407DAEF8B7FC /* CallService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallService.swift; sourceTree = "<group>"; };
 		F7A8E9D0C1B2A39485746352 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -123,6 +169,15 @@
 			files = (
 				1BA5EF486EAA40C5B0D1E44C /* Contacts.framework in Frameworks */,
 				A9258FAC65554B6F9F9D8097 /* AVFoundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E951B35ECAEB7459E7FC1A9F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BCEE11E1B490FF7950AA0B9B /* Foundation.framework in Frameworks */,
+				33B7D87B5634406E668736E6 /* XCTest.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -200,12 +255,42 @@
 			path = Resources/Localization;
 			sourceTree = "<group>";
 		};
+		5A88A0138D3A898138A1C222 /* EasyDialTests */ = {
+			isa = PBXGroup;
+			children = (
+				1D2D75260B70A1767E1EBE34 /* AppLanguageTests.swift */,
+				F10D080137060E1181E28FFC /* AppPreferencesTests.swift */,
+				A80A78BCBAC9808487E050C7 /* AppStoreTests.swift */,
+				8CC12A66221444FD43FB3196 /* CallServiceTests.swift */,
+				1357274E1F12F54F735FC9E8 /* ContactViewModelTests.swift */,
+				3BBD16C195566217A2F4B101 /* DynamicTypeStorageTests.swift */,
+				A74D9CE812A238B0BF27806F /* EmergencySettingsTests.swift */,
+				827A0036FD72CAFE27B74E40 /* FavoriteContactTests.swift */,
+				6385F9CC9F30F7C4BEAF78F0 /* FavoriteImportValidatorTests.swift */,
+				CB65A04944B4BC9D864579B0 /* ImportedContactTests.swift */,
+				A38DA27D584CD7A92B6957DE /* InMemoryContactPhotoStorageTests.swift */,
+				CA3E162C4553E8057C5B279C /* InMemoryRepositoriesTests.swift */,
+				010C35C0E703E91D58E84C11 /* SetupViewModelTests.swift */,
+			);
+			path = EasyDialTests;
+			sourceTree = "<group>";
+		};
+		663849875E50DF5931FDD7D6 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				EFDCCBA8DF8EDD43160DEE6A /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
 		7C5EFD61A7444FE2B8FA91C0 = {
 			isa = PBXGroup;
 			children = (
 				EAEFAFD8AED2465794358B17 /* EasyDial */,
 				02C1AA6775A74EE8890C49AF /* Products */,
 				28EE98612FB4FEBE00973358 /* Recovered References */,
+				C077318066045F53819D2F52 /* Frameworks */,
+				5A88A0138D3A898138A1C222 /* EasyDialTests */,
 			);
 			sourceTree = "<group>";
 		};
@@ -226,6 +311,31 @@
 			path = Resources/Theme;
 			sourceTree = "<group>";
 		};
+		AA0000000000000000000201 /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				AA0000000000000000000001 /* PersistenceController.swift */,
+				AA0000000000000000000002 /* Repositories.swift */,
+			);
+			path = Persistence;
+			sourceTree = "<group>";
+		};
+		AA0000000000000000000202 /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				AA0000000000000000000007 /* ContactPhotoStorage.swift */,
+			);
+			path = Storage;
+			sourceTree = "<group>";
+		};
+		AA0000000000000000000203 /* Store */ = {
+			isa = PBXGroup;
+			children = (
+				AA0000000000000000000008 /* AppStore.swift */,
+			);
+			path = Store;
+			sourceTree = "<group>";
+		};
 		AA30B57C1EBE4530A6DF8909 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
@@ -241,12 +351,20 @@
 				B5C6D7E8F901234567890A13 /* DynamicTypeStorage.swift */,
 				B5C6D7E8F901234567890A12 /* ImageDataOptimizer.swift */,
 				F1E2D3C4B5A69786958473625140392 /* L10n.swift */,
-				B5C6D7E8F901234567890A11 /* ModelContextSave.swift */,
-				B5C6D7E8F901234567890A14 /* ModelContainerFactory.swift */,
 				D9E0F1A2B3C4D5E6F7081910 /* FavoriteImportValidator.swift */,
 				D9E0F1A2B3C4D5E6F7081911 /* FavoriteContactImporter.swift */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		C077318066045F53819D2F52 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7979B7C96A5B5A30D8F6EAEC /* EasyDialTests.xctest */,
+				663849875E50DF5931FDD7D6 /* iOS */,
+				55AE579859C888C405C08153 /* XCTest.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		C0FFEE01000040008000ABCD5 /* Config */ = {
@@ -279,6 +397,7 @@
 		EAEFAFD8AED2465794358B17 /* EasyDial */ = {
 			isa = PBXGroup;
 			children = (
+				28E44DB82FC05B2500E934BF /* EasyDial.entitlements */,
 				64B4551B218649209157AC6E /* EasyDialApp.swift */,
 				F7A8E9D0C1B2A39485746352 /* LaunchScreen.storyboard */,
 				A5C02A31CBD34257945CA751 /* RootView.swift */,
@@ -296,6 +415,9 @@
 				01F8D11DFCE140BBB5AE2FF1 /* Services */,
 				EADA550B0E2743F4ADFF0EE7 /* ViewModels */,
 				2BC541C659B24EB98D528F5E /* Views */,
+				AA0000000000000000000201 /* Persistence */,
+				AA0000000000000000000202 /* Storage */,
+				AA0000000000000000000203 /* Store */,
 			);
 			path = EasyDial;
 			sourceTree = "<group>";
@@ -303,6 +425,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		3F56E8B51805D389BBDA8C0A /* EasyDialTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8E153F43F440D21D401AF52F /* Build configuration list for PBXNativeTarget "EasyDialTests" */;
+			buildPhases = (
+				DE48128CF44379F3C20810F8 /* Sources */,
+				E951B35ECAEB7459E7FC1A9F /* Frameworks */,
+				B22B7377F7F263F848744CBE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				34A28E46F14546EA80DBC562 /* PBXTargetDependency */,
+			);
+			name = EasyDialTests;
+			productName = EasyDialTests;
+			productReference = 7979B7C96A5B5A30D8F6EAEC /* EasyDialTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		C47ABD575E084C5DAB4031B1 /* EasyDial */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1D755DBD410249A59B1C8151 /* Build configuration list for PBXNativeTarget "EasyDial" */;
@@ -347,11 +487,19 @@
 			projectRoot = "";
 			targets = (
 				C47ABD575E084C5DAB4031B1 /* EasyDial */,
+				3F56E8B51805D389BBDA8C0A /* EasyDialTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		B22B7377F7F263F848744CBE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D1E387A3733849A89FAD3B31 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -406,28 +554,61 @@
 				762DD2AB978E4F909DAB68C5 /* SetupFlowView.swift in Sources */,
 				F1E2D3C4B5A69786958473625140393 /* L10n.swift in Sources */,
 				E1D2C3B4A5968778695A4B3C2D1E0F02 /* FavoriteContactsView.swift in Sources */,
-				B5C6D7E8F901234567890A01 /* ModelContextSave.swift in Sources */,
 				B5C6D7E8F901234567890A02 /* ImageDataOptimizer.swift in Sources */,
 				B5C6D7E8F901234567890A03 /* DynamicTypeStorage.swift in Sources */,
-				B5C6D7E8F901234567890A04 /* ModelContainerFactory.swift in Sources */,
 				D9E0F1A2B3C4D5E6F7081920 /* FavoriteImportValidator.swift in Sources */,
 				D9E0F1A2B3C4D5E6F7081921 /* FavoriteContactImporter.swift in Sources */,
 				B5C6D7E8F901234567890A06 /* DataRecoveryView.swift in Sources */,
 				B5C6D7E8F901234567890A07 /* EditFavoriteView.swift in Sources */,
 				C7D8E9F0A1B2C3D4E5F60719 /* NewContactComposer.swift in Sources */,
+				AA0000000000000000000101 /* PersistenceController.swift in Sources */,
+				AA0000000000000000000102 /* Repositories.swift in Sources */,
+				AA0000000000000000000107 /* ContactPhotoStorage.swift in Sources */,
+				AA0000000000000000000108 /* AppStore.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DE48128CF44379F3C20810F8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C8332AA6DA78571B7976A84 /* AppLanguageTests.swift in Sources */,
+				8F278E3EF664C53BB0F8A72D /* AppPreferencesTests.swift in Sources */,
+				68908CD706D0A355E0B7EA1E /* AppStoreTests.swift in Sources */,
+				27C04BD4420C3934D58B4BBC /* CallServiceTests.swift in Sources */,
+				29D105FD23FC16AF34DD01DD /* ContactViewModelTests.swift in Sources */,
+				75D2DE6847C62B50D326546E /* DynamicTypeStorageTests.swift in Sources */,
+				617F74957D45E42D23D0B3FA /* EmergencySettingsTests.swift in Sources */,
+				1A01413EB647591F4E49A146 /* FavoriteContactTests.swift in Sources */,
+				02E2F4ACEB9AD6C68CAB36D7 /* FavoriteImportValidatorTests.swift in Sources */,
+				720C22EA3C8B061C85AAE87C /* ImportedContactTests.swift in Sources */,
+				E6BB5A073AB704FAD2AEFDEA /* InMemoryContactPhotoStorageTests.swift in Sources */,
+				3203961362C18984834C6928 /* InMemoryRepositoriesTests.swift in Sources */,
+				0E3BDC4A4AA1B88087B65B92 /* SetupViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		34A28E46F14546EA80DBC562 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = EasyDial;
+			target = C47ABD575E084C5DAB4031B1 /* EasyDial */;
+			targetProxy = A1B6AC3D021496031CA67472 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		1DDB3D4B1040489A86B1936A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = EasyDial/EasyDial.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
+				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 8SS5HN6D42;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
@@ -438,7 +619,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hexa.EasyDial;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -465,11 +646,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = EasyDial/EasyDial.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
+				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 8SS5HN6D42;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_TESTABILITY = YES;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = EasyDial/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = CallNest;
@@ -478,7 +662,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hexa.EasyDial;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -491,6 +675,29 @@
 			};
 			name = Debug;
 		};
+		EBD6B79CA3378FEC4193466E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8SS5HN6D42;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.hexa.EasyDialTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EasyDial.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/EasyDial";
+			};
+			name = Debug;
+		};
 		F7B6BDF3AF9C4852A88A5791 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -500,6 +707,30 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
+		};
+		FD84D931D94D2304A5262C4D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8SS5HN6D42;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.hexa.EasyDialTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EasyDial.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/EasyDial";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
@@ -518,6 +749,15 @@
 			buildConfigurations = (
 				F7B6BDF3AF9C4852A88A5791 /* Debug */,
 				35DD340F0A0A4DFCA8224299 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8E153F43F440D21D401AF52F /* Build configuration list for PBXNativeTarget "EasyDialTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FD84D931D94D2304A5262C4D /* Release */,
+				EBD6B79CA3378FEC4193466E /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

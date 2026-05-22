@@ -2,15 +2,15 @@
 //  ContactCardView.swift
 //  EasyDial
 //
-//  Grid cell: photo, multiline name, primary Call control. Layout avoids wasted vertical space and
-//  supports Dynamic Type (HIG: legible default, minimumScaleFactor only when needed).
+//  Grid cell: photo, multiline name, primary Call control. Photo data is passed in from AppStore.photoCache.
 //
 
-import SwiftData
 import SwiftUI
 
 struct ContactCardView: View {
     let contact: FavoriteContact
+    /// Pre-loaded photo data from AppStore.photoCache; nil shows initials fallback.
+    let photoData: Data?
     let colors: ThemeColors
     let onCall: () -> Void
 
@@ -21,7 +21,6 @@ struct ContactCardView: View {
         UIDevice.current.userInterfaceIdiom == .pad
     }
 
-    /// Fixed image height; width follows the card’s inner width (after horizontal insets). iPad uses a taller photo area.
     private var avatarHeight: CGFloat {
         let phoneHeight: CGFloat
         switch dynamicTypeSize {
@@ -59,7 +58,6 @@ struct ContactCardView: View {
                     .padding(.top, imageToNameSpacing)
 
                 Spacer(minLength: 4)
-
                 callAffordance
             }
             .padding(.horizontal, imageEdgeInset)
@@ -73,9 +71,7 @@ struct ContactCardView: View {
             .clipShape(RoundedRectangle(cornerRadius: cardCornerRadius, style: .continuous))
             .shadow(
                 color: colors.accessibilityEmphasis ? .clear : Color.black.opacity(0.06),
-                radius: 6,
-                x: 0,
-                y: 3
+                radius: 6, x: 0, y: 3
             )
         }
         .buttonStyle(.plain)
@@ -102,7 +98,7 @@ struct ContactCardView: View {
 
     @ViewBuilder
     private var avatar: some View {
-        if let data = contact.photoData, let ui = UIImage(data: data) {
+        if let data = photoData, let ui = UIImage(data: data) {
             Image(uiImage: ui)
                 .resizable()
                 .scaledToFill()
@@ -147,21 +143,19 @@ struct ContactCardView: View {
     private func initials(from name: String) -> String {
         let parts = name.split(separator: " ").filter { !$0.isEmpty }
         let letters = parts.prefix(2).compactMap { $0.first.map(String.init) }
-        let joined = letters.joined().uppercased()
-        return String(joined.prefix(2))
+        return String(letters.joined().uppercased().prefix(2))
     }
 }
 
 #Preview {
-    let en = Locale(identifier: "en")
     let contact = FavoriteContact(
         sortOrder: 0,
         displayName: "Priya Sharma",
         relationshipLabel: FavoriteContact.hiddenRelationshipLabel,
         phoneNumber: "5550100"
     )
-    ContactCardView(contact: contact, colors: ThemeColors.palette(for: .light), onCall: {})
-        .environment(\.locale, en)
+    ContactCardView(contact: contact, photoData: nil, colors: ThemeColors.palette(for: .light), onCall: {})
+        .environment(\.locale, Locale(identifier: "en"))
         .padding()
         .background(ThemeColors.palette(for: .light).background)
 }
